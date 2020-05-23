@@ -4,7 +4,6 @@ import { UserDto } from 'src/app/dto/user';
 import { LoginService } from 'src/app/service/login.service';
 import { LoginResponseModel } from 'src/app/model/login-response';
 import { AuthService } from 'src/app/service/auth.service';
-import { ConnectedUserModel } from 'src/app/model/connected-user';
 import { ErrorMessageModel } from 'src/app/model/error-message';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
