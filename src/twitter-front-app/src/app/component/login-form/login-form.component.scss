@@ -1,6 +1,9 @@
 .form-container {
+    top: 100px;
+    position: relative;
+    height: 250px;
     width: 30%;
-    border-radius: 0.75%;
+    border-radius: 2.5%;
     margin: auto;
     background-color: #f7f7f7;
     display: flex;
@@ -14,5 +17,9 @@
 
     .spinner {
         margin-top: 20px;
+    }
+
+    .error-handler {
+        text-align: center;
     }
 }
