@@ -25,11 +25,11 @@
     >
     Se connecter
     </button>
-
-    <br>
+    
     <!-- Affichage d'erreur -->
-    <div class="error-handler" *ngIf="error">
-        <mat-icon color="warn">warning</mat-icon><mat-error>{{ error.message }} !</mat-error>
+    <div class="error-handler" *ngIf="errorMessage">
+        <br />
+        <mat-icon color="warn">warning</mat-icon><mat-error>{{ errorMessage }} !</mat-error>
     </div>
 
     <!-- Spinner -->

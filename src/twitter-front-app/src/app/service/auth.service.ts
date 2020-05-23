@@ -5,12 +5,15 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse, HttpResponse, HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageModel } from '../model/message';
 import { environment } from 'src/environments/environment';
+import { UserDto } from '../dto/user';
+import { LoginResponseModel } from '../model/login-response';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
     private _tokenCheckUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.token_check}`;
+    private _userLoginUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.user.login}`;
 
     private _tokenName = 'accessToken';
     private _userIdName = 'userId';
@@ -74,6 +77,11 @@ export class AuthService {
                 });
             }
         });
+    }
+
+    LoginUser(user: UserDto): Promise<HttpResponse<LoginResponseModel>> {
+        const res = this.http.post<LoginResponseModel>(this._userLoginUrl, user, { observe: 'response' }).toPromise();
+        return res;
     }
 
     Logout() {
