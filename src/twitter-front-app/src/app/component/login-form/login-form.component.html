@@ -4,7 +4,7 @@
     <!-- Input pour l'identifiant -->
     <mat-form-field appearance="standard">
         <mat-label>Identifiant</mat-label>
-        <input type="text" formControlName="username" matInput placeholder="" required>
+        <input type="text" formControlName="pseudo" matInput placeholder="" required>
         <mat-icon matSuffix>account_circle</mat-icon>
         <mat-error>veuillez saisir un identifiant valide</mat-error>
     </mat-form-field>
@@ -25,6 +25,12 @@
     >
     Se connecter
     </button>
+
+    <!-- Affichage d'erreur -->
+    <div class="error-handler" *ngIf="error">
+        <br>
+        <mat-icon color="warn">warning</mat-icon><mat-error>{{ error.message }} !</mat-error>
+    </div>
 
     <!-- Spinner -->
     <mat-spinner class="spinner" *ngIf="submitted" [diameter]="55"></mat-spinner>

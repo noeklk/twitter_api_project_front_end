@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserDto } from 'src/app/dto/user';
+import { LoginService } from 'src/app/service/login.service';
+import { LoginResponse } from 'src/app/dto/LoginResponse';
+import { AuthService } from 'src/app/service/auth.service';
+import { ConnectedUser } from 'src/app/model/connected-user';
+import { ErrorMessage } from 'src/app/model/error-message';
 
 @Component({
   selector: 'app-login-form',
@@ -11,13 +16,18 @@ export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
   submitted = false;
+  error: ErrorMessage;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     // LoginForm builder
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(4)]],
+      pseudo: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(4)]]
     });
 
@@ -28,11 +38,32 @@ export class LoginFormComponent implements OnInit {
       this.submitted = true;
 
       const user: UserDto = {
-        username: this.loginForm.value.username,
+        pseudo: this.loginForm.value.pseudo,
         password: this.loginForm.value.password
       };
 
-      console.log(user);
+      // login le user
+      this.loginService.loginUser(user).subscribe((loginResponse: LoginResponse) => {
+        this.submitted = false;
+        this.error = null;
+        // set token in local storage
+        this.authService.setUserToken(loginResponse.token);
+
+        // set connectedUser state
+        const connectedUser: ConnectedUser = {
+          _id: loginResponse.user.id,
+          pseudo: user.pseudo
+        };
+        this.authService.connectedUser.next(connectedUser);
+
+        // redirection vers la page home
+        // **TO DO */
+
+      }, (error) => {
+        this.submitted = false;
+        this.error = error.error;
+        console.log(error);
+      });
 
     }
   }
