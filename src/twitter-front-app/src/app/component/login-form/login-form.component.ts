@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserDto } from 'src/app/dto/user';
-import { LoginService } from 'src/app/service/login.service';
 import { LoginResponse } from 'src/app/dto/LoginResponse';
 import { AuthService } from 'src/app/service/auth.service';
 import { ConnectedUser } from 'src/app/model/connected-user';
@@ -20,7 +19,6 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private loginService: LoginService,
     private authService: AuthService
   ) { }
 
@@ -43,7 +41,7 @@ export class LoginFormComponent implements OnInit {
       };
 
       // login le user
-      this.loginService.loginUser(user).subscribe((loginResponse: LoginResponse) => {
+      this.authService.loginUser(user).subscribe((loginResponse: LoginResponse) => {
         this.submitted = false;
         this.error = null;
         // set token in local storage
