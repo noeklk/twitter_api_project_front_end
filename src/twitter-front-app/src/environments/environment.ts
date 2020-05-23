@@ -8,18 +8,17 @@ export const environment = {
 
   nodejs_api_route: {
     user: {
-      register: "users/register/",
-      login: "users/login/",
+      register: 'users/register/',
+      login: 'users/login/',
 
-      get_a_user_by_id: "users/",
-      get_all_users: "users/",
+      get_a_user_by_id: 'users/',
+      get_all_users: 'users/',
 
-      delete_a_user_by_id: "users/"
+      delete_a_user_by_id: 'users/'
     },
-    token_check: "token/"
+    token_check: 'token/'
   }
 };
-
 
 /*
  * For easier debugging in development mode, you can import the following file

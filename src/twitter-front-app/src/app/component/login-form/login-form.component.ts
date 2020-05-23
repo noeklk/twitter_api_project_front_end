@@ -10,7 +10,7 @@ import { UserDto } from 'src/app/dto/user';
 export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
-  submitted: boolean = false;
+  submitted = false;
 
   constructor(private fb: FormBuilder) { }
 
@@ -24,16 +24,16 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.loginForm.valid) {
+    if (this.loginForm.valid) {
       this.submitted = true;
 
-      const user: UserDto = { 
+      const user: UserDto = {
         username: this.loginForm.value.username,
         password: this.loginForm.value.password
       };
 
       console.log(user);
-      
+
     }
   }
 
