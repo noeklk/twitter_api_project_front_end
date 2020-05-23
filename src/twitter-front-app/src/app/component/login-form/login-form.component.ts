@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserDto } from 'src/app/dto/user';
 import { LoginService } from 'src/app/service/login.service';
-import { LoginResponse } from 'src/app/dto/LoginResponse';
+import { LoginResponseModel } from 'src/app/model/login-response';
 import { AuthService } from 'src/app/service/auth.service';
-import { ConnectedUser } from 'src/app/model/connected-user';
-import { ErrorMessage } from 'src/app/model/error-message';
+import { ConnectedUserModel } from 'src/app/model/connected-user';
+import { ErrorMessageModel } from 'src/app/model/error-message';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -16,12 +18,13 @@ export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
   submitted = false;
-  error: ErrorMessage;
+  error: ErrorMessageModel;
 
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
-    private authService: AuthService
+    private authService: AuthService,
+    private myRoute: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +36,7 @@ export class LoginFormComponent implements OnInit {
 
   }
 
-  onSubmit() {
+  async Login() {
     if (this.loginForm.valid) {
       this.submitted = true;
 
@@ -43,29 +46,22 @@ export class LoginFormComponent implements OnInit {
       };
 
       // login le user
-      this.loginService.loginUser(user).subscribe((loginResponse: LoginResponse) => {
+      await this.loginService.LoginUser(user).then((loginResponse: HttpResponse<LoginResponseModel>) => {
         this.submitted = false;
         this.error = null;
+
         // set token in local storage
-        this.authService.setUserToken(loginResponse.token);
+        this.authService.SetUserToken(loginResponse.body.token);
+        this.authService.SetUserId(loginResponse.body.user.id);
 
-        // set connectedUser state
-        const connectedUser: ConnectedUser = {
-          _id: loginResponse.user.id,
-          pseudo: user.pseudo
-        };
-        this.authService.connectedUser.next(connectedUser);
+        // On récupère ensuite l'utilisateur avec l'id stocker dans la session dans home
 
-        // redirection vers la page home
-        // **TO DO */
+        this.myRoute.navigate(['home']);
 
-      }, (error) => {
+      }).catch((e: HttpErrorResponse) => {
         this.submitted = false;
-        this.error = error.error;
-        console.log(error);
+        alert(e.error.message);
       });
-
     }
   }
-
 }

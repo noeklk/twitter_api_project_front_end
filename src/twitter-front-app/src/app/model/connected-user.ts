@@ -1,4 +1,4 @@
-export interface ConnectedUser {
+export interface ConnectedUserModel {
     _id: string;
     pseudo: string;
 }

@@ -1,4 +1,4 @@
-<form class="form-container mat-elevation-z3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form class="form-container mat-elevation-z3" [formGroup]="loginForm" (ngSubmit)="Login()">
     <h1>Connexion</h1>
 
     <!-- Input pour l'identifiant -->
@@ -26,9 +26,9 @@
     Se connecter
     </button>
 
+    <br>
     <!-- Affichage d'erreur -->
     <div class="error-handler" *ngIf="error">
-        <br>
         <mat-icon color="warn">warning</mat-icon><mat-error>{{ error.message }} !</mat-error>
     </div>
 
