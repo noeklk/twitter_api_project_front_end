@@ -1,5 +1,5 @@
 // material.module.ts
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -107,4 +107,4 @@ import { MatTreeModule } from '@angular/material/tree';
     ],
     providers: []
 })
-export class MaterialModule {}
+export class MaterialModule { }
