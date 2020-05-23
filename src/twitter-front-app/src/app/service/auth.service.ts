@@ -15,6 +15,8 @@ export class AuthService {
     private _tokenName = 'accessToken';
     private _userIdName = 'userId';
 
+    public isLoggedIn = false;
+
     // User State
     connectedUser = new ReplaySubject<ConnectedUserModel>();
 
@@ -63,7 +65,7 @@ export class AuthService {
             } else {
                 this.CheckToken().then((res: HttpResponse<MessageModel>) => {
                     console.log('nice you have a valid token, come on in !');
-                    // this.isLoggedIn = true;
+                    this.isLoggedIn = true;
                     return resolve(true);
                 }).catch((error: HttpErrorResponse) => {
                     console.log('your token is not valid anymore, please reconnect');
@@ -77,9 +79,8 @@ export class AuthService {
     Logout() {
         localStorage.removeItem(this._tokenName);
         localStorage.removeItem(this._userIdName);
-        // this.isLoggedIn = false;
-        alert('Déconnecté!');
+        this.isLoggedIn = false;
+        console.log('Déconnecté!');
         this.myRoute.navigate(['login']);
     }
-
 }

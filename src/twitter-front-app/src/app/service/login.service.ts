@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { UserDto } from '../dto/user';
 import { LoginResponseModel } from '../model/login-response';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Injectable({
