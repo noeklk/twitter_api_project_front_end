@@ -22,23 +22,30 @@ export class HomeComponent implements OnInit {
 
   }
 
+  tweets: TweetModel;
+
   ngOnInit(): void {
-
-    if (localStorage.getItem('oauthAccessToken') && localStorage.getItem('oauthAccessTokenSecret')) {
-      this.twitterService.GetUserTweets().then((res: HttpResponse<any>) => {
-        this.twitterService.tweets = res.body.data;
-        console.log(this.twitterService.tweets);
-      });
-
-      return;
-    }
-
     this.activatedRoute.queryParams.subscribe(params => {
       const oauthVerifier = params.oauth_verifier;
       const oauthToken = params.oauth_token;
       if (oauthToken && oauthVerifier) {
         this.saveAccessToken(oauthToken, oauthVerifier);
+
       }
+    });
+  }
+
+  async GetUserTweets() {
+    if (!await this.sessionService.CheckAccessTokens()) {
+      alert('Vous n\'êtes pas connecté');
+      return;
+    }
+
+    await this.twitterService.GetUserTweets().then((res: HttpResponse<any>) => {
+      this.tweets = res.body.data;
+
+    }).catch(e => {
+      throw e;
     });
   }
 

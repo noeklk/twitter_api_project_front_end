@@ -1,11 +1,12 @@
 <div>
     <button mat-raised-button (click)="redirectToTwitter()">Connect to Twitter Account</button>
+    <button mat-raised-button (click)="GetUserTweets()">Show your recent tweets</button>
+    
 </div>
 
 
 <ul>
-  <li *ngFor="let tweet of twitterService.tweets">
+  <li *ngFor="let tweet of tweets">
     Tweet : {{ tweet.text }}; Date : {{ tweet.created_at | date: 'dd/MM/yyyy' }}
   </li>
-
 </ul>

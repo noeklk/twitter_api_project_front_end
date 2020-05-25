@@ -26,4 +26,15 @@ export class SessionService {
             AccessTokenSecret: accessTokenSecret
         });
     }
+
+    CheckAccessTokens(): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            if (localStorage.getItem('oauthAccessToken') != null &&
+                localStorage.getItem('oauthAccessTokenSecret') != null) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    }
 }
