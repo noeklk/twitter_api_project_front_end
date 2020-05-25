@@ -90,6 +90,7 @@ export class AuthService {
         const res = this.http.post<MessageModel>(this._userSignupUrl, user, { observe: 'response' }).toPromise();
         return res;
     }
+    
     Logout() {
         localStorage.removeItem(this._tokenName);
         localStorage.removeItem(this._userIdName);

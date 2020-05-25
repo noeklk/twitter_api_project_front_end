@@ -48,9 +48,6 @@ async Signup() {
   // signup le user
   await this.authService.SignupUser(user).then((signupResponse: HttpResponse<MessageModel>) => {
     
-
-    // On récupère ensuite l'utilisateur avec l'id stocker dans la session dans home
-
     this.myRoute.navigate(['login']);
 
   }).catch((e: HttpErrorResponse) => {
