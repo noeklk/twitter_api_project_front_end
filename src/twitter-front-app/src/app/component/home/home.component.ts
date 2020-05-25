@@ -5,6 +5,7 @@ import { SessionService } from 'src/app/service/session.service';
 import { CdkStepperNext } from '@angular/cdk/stepper';
 import { HttpResponse } from '@angular/common/http';
 import { AccessTokenModel } from 'src/app/model/access-tokens';
+import { TweetModel } from 'src/app/model/tweet-model';
 
 @Component({
   selector: 'app-home',
@@ -24,8 +25,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     if (localStorage.getItem('oauthAccessToken') && localStorage.getItem('oauthAccessTokenSecret')) {
-      this.twitterService.GetUserTweets().then((res) => {
-        console.log(res);
+      this.twitterService.GetUserTweets().then((res: HttpResponse<JSON>) => {
+        this.twitterService.tweets = res.body.data;
+        console.log(this.twitterService.tweets);
       });
 
       return;
