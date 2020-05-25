@@ -87,7 +87,7 @@ export class AuthService {
     }
 
     SignupUser(user: UserDto): Promise<HttpResponse<MessageModel>> {
-        const res = this.http.post<MessageModel>(this._userLoginUrl, user, { observe: 'response' }).toPromise();
+        const res = this.http.post<MessageModel>(this._userSignupUrl, user, { observe: 'response' }).toPromise();
         return res;
     }
     Logout() {

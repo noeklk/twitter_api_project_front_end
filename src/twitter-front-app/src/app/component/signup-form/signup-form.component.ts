@@ -26,9 +26,8 @@ export class SignupFormComponent implements OnInit {
   ngOnInit(): void {
     // SignupForm builder
     this.signupForm = this.fb.group({
-      pseudo: ['', [Validators.required, Validators.minLength(15)]],
-      password: ['', [Validators.required, Validators.minLength(10)]],
-      email: ['', [Validators.required, Validators.email]],
+      pseudo: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(4)]]
   });
 
 }
@@ -43,8 +42,7 @@ async Signup() {
 
   const user: UserDto = {
     pseudo: this.signupForm.value.pseudo,
-    password: this.signupForm.value.password,
-    email: this.signupForm.value.email
+    password: this.signupForm.value.password
   };
 
   // signup le user
