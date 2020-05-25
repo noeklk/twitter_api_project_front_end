@@ -22,6 +22,15 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    if (localStorage.getItem('oauthAccessToken') && localStorage.getItem('oauthAccessTokenSecret')) {
+      this.twitterService.GetUserTweets().then((res) => {
+        console.log(res);
+      });
+
+      return;
+    }
+
     this.activatedRoute.queryParams.subscribe(params => {
       const oauthVerifier = params.oauth_verifier;
       const oauthToken = params.oauth_token;
@@ -29,12 +38,6 @@ export class HomeComponent implements OnInit {
         this.saveAccessToken(oauthToken, oauthVerifier);
       }
     });
-
-    if (localStorage.getItem('oauthAccessToken') && localStorage.getItem('oauthAccessTokenSecret')) {
-      this.twitterService.GetUserTweets().then((res) => {
-        console.log(res);
-      });
-    }
   }
 
   saveAccessToken(oauthToken: string, oauthVerifier: string) {
