@@ -1,9 +1,10 @@
-import { TwitterService } from "./../../service/twitter.service";
-import { HttpResponse } from "@angular/common/http";
+import { TwitterService } from './../../service/twitter.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SessionService } from 'src/app/service/session.service';
 import { CdkStepperNext } from '@angular/cdk/stepper';
+import { HttpResponse } from '@angular/common/http';
+import { AccessTokenModel } from 'src/app/model/access-tokens';
 
 @Component({
   selector: 'app-home',
@@ -38,9 +39,9 @@ export class HomeComponent implements OnInit {
 
   saveAccessToken(oauthToken: string, oauthVerifier: string) {
 
-    this.sessionService.saveAccessToken(oauthToken, oauthVerifier).subscribe((res) => {
-      localStorage.setItem('oauthAccessToken', res.oauthAccessToken);
-      localStorage.setItem('oauthAccessTokenSecret', res.oauthAccessTokenSecret);
+    this.sessionService.saveAccessToken(oauthToken, oauthVerifier).then((res: HttpResponse<AccessTokenModel>) => {
+      localStorage.setItem('oauthAccessToken', res.body.oauthAccessToken);
+      localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
 
       alert('Token saved');
     });
