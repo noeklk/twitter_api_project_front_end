@@ -15,7 +15,7 @@ export class AuthService {
     private _tokenCheckUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.token_check}`;
     private _userLoginUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.user.login}`;
     private _userSignupUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.user.register}`;
-    
+
 
     private _tokenName = 'accessToken';
     private _userIdName = 'userId';
@@ -90,7 +90,7 @@ export class AuthService {
         const res = this.http.post<MessageModel>(this._userSignupUrl, user, { observe: 'response' }).toPromise();
         return res;
     }
-    
+
     Logout() {
         localStorage.removeItem(this._tokenName);
         localStorage.removeItem(this._userIdName);

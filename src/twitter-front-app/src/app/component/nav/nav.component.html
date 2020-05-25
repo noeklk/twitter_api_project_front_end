@@ -2,10 +2,10 @@
     <mat-toolbar-row>
         <div>
             <a mat-raised-button routerLink="/home">Accueil</a>
-            <ng-container *ngIf=!auth.isLoggedIn>
+            <span *ngIf=!auth.isLoggedIn>
                 <a mat-raised-button routerLink="/login">Connexion</a>
                 <a mat-raised-button routerLink="/signup">Inscription</a>
-            </ng-container>
+            </span>
             <a mat-raised-button *ngIf="auth.isLoggedIn" (click)="auth.Logout()">Déconnexion</a> 
         </div>
     </mat-toolbar-row>

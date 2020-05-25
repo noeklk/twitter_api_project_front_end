@@ -50,7 +50,7 @@ async Signup() {
 
     alert('Inscription effectué avec succès, veuillez maintenant vous connecter');
     this.myRoute.navigate(['login']);
-    
+
   }).catch((e: HttpErrorResponse) => {
     this.errorMessage = e.error.message ? e.error.message : 'Erreur de connexion avec l\'Api';
   }).finally(() => {

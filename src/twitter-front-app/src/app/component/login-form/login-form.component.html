@@ -18,6 +18,10 @@
     </mat-form-field>
 
     <!-- bouton pour le submit -->
+    <div class="container-login">
+
+        <!-- Redirection signup -->
+    <a class="signup-a" routerLink="/signup">Je n'ai pas de compte</a>
     <button *ngIf="!submitted"
     class="validation-button" 
     mat-raised-button color="primary" 
@@ -25,6 +29,8 @@
     >
     Se connecter
     </button>
+    </div>
+    
     
     <!-- Affichage d'erreur -->
     <div class="error-handler" *ngIf="errorMessage">
@@ -32,8 +38,7 @@
         <mat-icon color="warn">warning</mat-icon><mat-error>{{ errorMessage }} !</mat-error>
     </div>
 
-    <!-- Redirection signup -->
-    <a [routerLink]="['/signup']">s'inscrire</a>
+    
 
     <!-- Spinner -->
     <mat-spinner class="spinner" *ngIf="submitted" [diameter]="55"></mat-spinner>
