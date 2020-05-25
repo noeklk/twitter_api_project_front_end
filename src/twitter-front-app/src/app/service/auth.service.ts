@@ -14,6 +14,8 @@ import { LoginResponseModel } from '../model/login-response';
 export class AuthService {
     private _tokenCheckUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.token_check}`;
     private _userLoginUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.user.login}`;
+    private _userSignupUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.user.register}`;
+
 
     private _tokenName = 'accessToken';
     private _userIdName = 'userId';
@@ -81,6 +83,11 @@ export class AuthService {
 
     LoginUser(user: UserDto): Promise<HttpResponse<LoginResponseModel>> {
         const res = this.http.post<LoginResponseModel>(this._userLoginUrl, user, { observe: 'response' }).toPromise();
+        return res;
+    }
+
+    SignupUser(user: UserDto): Promise<HttpResponse<MessageModel>> {
+        const res = this.http.post<MessageModel>(this._userSignupUrl, user, { observe: 'response' }).toPromise();
         return res;
     }
 

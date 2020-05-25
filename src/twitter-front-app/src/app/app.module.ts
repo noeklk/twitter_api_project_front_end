@@ -10,13 +10,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './component/home/home.component';
 import { NavComponent } from './component/nav/nav.component';
+import { SignupFormComponent } from './component/signup-form/signup-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    SignupFormComponent
   ],
   imports: [
     BrowserModule,
