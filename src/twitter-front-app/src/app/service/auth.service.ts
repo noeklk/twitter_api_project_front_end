@@ -87,6 +87,8 @@ export class AuthService {
     Logout() {
         localStorage.removeItem(this._tokenName);
         localStorage.removeItem(this._userIdName);
+        localStorage.removeItem('oauthAccessToken');
+        localStorage.removeItem('oauthAccessTokenSecret');
         this.isLoggedIn = false;
         console.log('Déconnecté!');
         this.myRoute.navigate(['login']);
