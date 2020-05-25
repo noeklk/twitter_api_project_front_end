@@ -9,12 +9,12 @@ export class SessionService {
     constructor(private http: HttpClient) { }
 
     getRedirectUrl() {
-        return this.http.get(`${environment.nodejs_api_host}sessions/connect`);
+        return this.http.get(`${environment.nodejs_api_host}${environment.nodejs_api_route.session.connect}`);
     }
 
     saveAccessToken(oauthToken: string, oauthVerifier: string): Promise<HttpResponse<AccessTokenModel>> {
         console.log('Sauvegarde des tokens dans le back');
-        return this.http.get<AccessTokenModel>(`${environment.nodejs_api_host}sessions/saveAccessTokens?oauth_token=${oauthToken}&oauth_verifier=${oauthVerifier}`, { observe: 'response' }).toPromise();
+        return this.http.get<AccessTokenModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.session.save_access_tokens}?oauth_token=${oauthToken}&oauth_verifier=${oauthVerifier}`, { observe: 'response' }).toPromise();
     }
 
     GenerateAccessTokenHeader(): HttpHeaders {
