@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     if (localStorage.getItem('oauthAccessToken') && localStorage.getItem('oauthAccessTokenSecret')) {
-      this.twitterService.GetUserTweets().then((res: HttpResponse<JSON>) => {
+      this.twitterService.GetUserTweets().then((res: HttpResponse<any>) => {
         this.twitterService.tweets = res.body.data;
         console.log(this.twitterService.tweets);
       });

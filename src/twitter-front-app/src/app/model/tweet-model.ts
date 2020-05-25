@@ -1,4 +1,6 @@
 export interface TweetModel {
-    created_at: Date;
-    text: string;
+    data: {
+        created_at: Date;
+        text: string;
+    };
 }
