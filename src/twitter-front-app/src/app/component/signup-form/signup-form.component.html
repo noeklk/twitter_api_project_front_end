@@ -1,41 +1,41 @@
-<form class="form-container mat-elevation-z4" [formGroup]="signupForm" (ngSubmit)="Signup()">
+<form class="form-container mat-elevation-z4 formulaire" [formGroup]="signupForm" (ngSubmit)="Signup()">
     <h1>Inscription</h1>
 
-    <!-- Input pour le Nom -->
+    <!-- Input pour le pseudo -->
     <mat-form-field appearance="standard">
-        <mat-label>pseudo</mat-label>
+        <mat-label>Pseudo</mat-label>
         <input type="text" formControlName="pseudo" matInput placeholder="" required>
         <mat-icon matSuffix>account_circle</mat-icon>
         <mat-error>veuillez saisir votre pseudo</mat-error>
     </mat-form-field>
 
-    <!-- Input pour le Prénom -->
+    <!-- Input pour le email -->
     <mat-form-field appearance="standard">
-        <mat-label>Password</mat-label>
+        <mat-label>Email</mat-label>
+        <input type="email" formControlName="email" matInput placeholder="" required>
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error>veuillez saisir votre adresse email</mat-error>
+    </mat-form-field>
+
+    <!-- Input pour le mdp -->
+    <mat-form-field appearance="standard">
+        <mat-label>Mot de passe</mat-label>
         <input type="password" formControlName="password" matInput placeholder="" required>
         <mat-icon matSuffix>vpn_key</mat-icon>
         <mat-error>veuillez saisir mot de passe</mat-error>
     </mat-form-field>
 
-    
-
     <!-- bouton pour le submit -->
-    <button *ngIf="!submitted"
-    class="validation-button" 
-    mat-raised-button color="primary" 
-    [disabled]="!signupForm.valid"
-    >
-    S'inscrire
-    </button>
-    
+    <div class="container-submit">
+        <a [routerLink]="['/login']" class="button-signup">J'ai déjà un compte</a>
+        <button *ngIf="!submitted" class="validation-button button-signup" mat-raised-button color="primary" [disabled]="!signupForm.valid">S'inscrire</button>
+    </div>
+
     <!-- Affichage d'erreur -->
     <div class="error-handler" *ngIf="errorMessage">
         <br />
         <mat-icon color="warn">warning</mat-icon><mat-error>{{ errorMessage }} !</mat-error>
     </div>
-
-    <!-- Redirection login -->
-    <a [routerLink]="['/login']">J'ai déjà un compte</a>
 
     <!-- Spinner -->
     <mat-spinner class="spinner" *ngIf="submitted" [diameter]="55"></mat-spinner>

@@ -28,7 +28,7 @@ export class SignupFormComponent implements OnInit {
     this.signupForm = this.fb.group({
       pseudo: ['', [Validators.required, Validators.minLength(15)]],
       password: ['', [Validators.required, Validators.minLength(10)]],
-      
+      email: ['', [Validators.required, Validators.email]],
   });
 
 }
@@ -42,9 +42,9 @@ async Signup() {
   this.submitted = true;
 
   const user: UserDto = {
-     pseudo: this.signupForm.value.pseudo,
+    pseudo: this.signupForm.value.pseudo,
     password: this.signupForm.value.password,
-
+    email: this.signupForm.value.email
   };
 
   // signup le user
