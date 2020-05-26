@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
 
   async GetUserTweets() {
     if (!await this.sessionService.CheckAccessTokens()) {
-      alert('Vous n\'êtes pas connecté');
+      alert('Vous n\'êtes connecté à aucun compte Twitter');
       return;
     }
 
