@@ -12,6 +12,7 @@ import { HomeComponent } from './component/home/home.component';
 import { NavComponent } from './component/nav/nav.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { BarChartComponent } from './template/bar-chart/bar-chart.component';
+import { ChartistModule } from 'ng-chartist';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BarChartComponent } from './template/bar-chart/bar-chart.component';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartistModule
   ],
   providers: [],
   bootstrap: [AppComponent]
