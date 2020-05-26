@@ -1,0 +1,52 @@
+.tweet {
+    display: flex;
+    flex-direction: row;
+    max-width: 550px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f1f1f1;
+    }
+
+    .tweet__profile {
+        width: 10%;
+
+        img {
+            width: auto;
+            border-radius: 50%;
+        }
+    }
+
+    .tweet__body {
+        width: 90%;
+
+        &--user {
+            font-weight: bold;
+            .username {
+                color: rgb(173, 173, 173);
+            }
+        }
+
+        &--date {
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+
+        &--description {
+
+        }
+
+        &--hashtags {
+            color: rgb(0, 38, 255);
+            margin-bottom: 10px;
+        }
+
+        &--img {
+            img {
+                border-radius: 15px;
+            }
+        }
+    }
+}
