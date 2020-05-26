@@ -5,8 +5,6 @@ import { LoginResponseModel } from 'src/app/model/login-response';
 import { AuthService } from 'src/app/service/auth.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { KeywordService } from 'src/app/service/keyword.service';
-import { KeywordModel } from 'src/app/model/keyword';
 
 @Component({
   selector: 'app-login-form',
