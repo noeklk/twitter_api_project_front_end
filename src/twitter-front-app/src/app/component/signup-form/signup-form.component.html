@@ -23,10 +23,13 @@
         <button *ngIf="!submitted" class="validation-button button-signup" mat-raised-button color="primary" [disabled]="!signupForm.valid">S'inscrire</button>
     </div>
 
+    <br />
+    
     <!-- Affichage d'erreur -->
     <div class="error-handler" *ngIf="errorMessage">
-        <br />
-        <mat-icon color="warn">warning</mat-icon><mat-error>{{ errorMessage }} !</mat-error>
+        
+        <mat-icon color="warn">warning</mat-icon>
+        <mat-error>{{ errorMessage }} !</mat-error>
     </div>
 
     <!-- Spinner -->

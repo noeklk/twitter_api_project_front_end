@@ -48,13 +48,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  saveAccessToken(oauthToken: string, oauthVerifier: string) {
+  async saveAccessToken(oauthToken: string, oauthVerifier: string) {
 
-    this.sessionService.saveAccessToken(oauthToken, oauthVerifier).then((res: HttpResponse<AccessTokenModel>) => {
+    await this.sessionService.saveAccessToken(oauthToken, oauthVerifier).then((res: HttpResponse<AccessTokenModel>) => {
       localStorage.setItem('oauthAccessToken', res.body.oauthAccessToken);
       localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
 
       alert('Token saved');
+    }).catch(e => {
+      const errorMessage = e.error.message ? e.error.message : 'Erreur de connexion avec l\'Api';
+      console.log(errorMessage);
     });
   }
 

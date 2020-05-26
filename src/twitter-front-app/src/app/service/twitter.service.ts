@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class TwitterService {
     constructor(private http: HttpClient, private sessionService: SessionService) { }
 
-    async GetUserTweets(): Promise<HttpResponse<JSON>> {
+    GetUserTweets(): Promise<HttpResponse<JSON>> {
         const res = this.http.get<JSON>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_tweets}`,
             { headers: this.sessionService.GenerateAccessTokenHeader(), observe: 'response' }).toPromise();
         return res;

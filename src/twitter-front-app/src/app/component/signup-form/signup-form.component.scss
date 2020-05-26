@@ -6,12 +6,17 @@
     background: #f7f7f7;
     padding: 50px;
     position: relative;
-    height: 240px;
+    min-height: 240px;
+    max-height: 250px;
 
     .spinner {
         position: absolute;
         left: 70%;
         bottom: 56.5px
+    }
+
+    .error-handler {
+        text-align: center;
     }
     
     .container-submit{
