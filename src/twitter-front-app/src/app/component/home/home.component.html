@@ -1,11 +1,33 @@
 <div class="buttons-container">
-    <button mat-raised-button (click)="redirectToTwitter()">Connect to Twitter Account</button>
-    <button mat-raised-button (click)="GetUserTweets()">Show your recent tweets</button> 
+  <button mat-raised-button (click)="redirectToTwitter()">{{tweeterConnectStatus}}
+    <mat-icon class="twitter-logo"></mat-icon>
+  </button>
+    <br />
+    <br />
+    <button mat-raised-button (click)="GetUserTweets()">Montrer/Mettre à jour fil twitter</button> 
+    <button mat-raised-button (click)="HideFeed()">Cacher fil twitter</button> 
 </div>
 
+<div *ngIf="showfeed">
+  <div>
+    <h2>
+      Tweets
+    </h2>
+    <ol>
+      <li *ngFor="let tweet of tweets">
+        Tweet: {{ tweet.text }}; Date: {{ tweet.created_at | date: 'dd/MM/yyyy' }}
+      </li>
+    </ol>
+  </div>
 
-<ul>
-  <li *ngFor="let tweet of tweets">
-    Tweet : {{ tweet.text }}; Date : {{ tweet.created_at | date: 'dd/MM/yyyy' }}
-  </li>
-</ul>
+  <div>
+    <h2>
+      Retweets
+    </h2>
+    <ol>
+      <li *ngFor="let retweet of retweets">
+        Tweet: {{ retweet.text }}; Date: {{ retweet.created_at | date: 'dd/MM/yyyy' }}
+      </li>
+    </ol>
+  </div>
+</div>

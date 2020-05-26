@@ -19,15 +19,28 @@ export class HomeComponent implements OnInit {
     private twitterService: TwitterService
   ) { }
 
-  tweets: TweetModel;
+  tweets = new Array<TweetModel>();
+  retweets = new Array<TweetModel>();
 
-  ngOnInit(): void {
+  showfeed = false;
+
+  tweeterConnectStatus = 'Se connecter à Twitter';
+
+  async ngOnInit(): Promise<void> {
     // Vérifie si le token d'accès pour l'utilisateur a bien été généré pour l'utilisateur connecté
-    this.activatedRoute.queryParams.subscribe(params => {
-      const oauthVerifier = params.oauth_verifier;
-      const oauthToken = params.oauth_token;
-      if (oauthToken && oauthVerifier) {
-        this.saveAccessToken(oauthToken, oauthVerifier);
+
+    await this.sessionService.CheckAccessTokens().then((res) => {
+      if (res) {
+        this.tweeterConnectStatus = 'Changer de compte';
+      } else {
+        this.activatedRoute.queryParams.subscribe(params => {
+          const oauthVerifier = params.oauth_verifier;
+          const oauthToken = params.oauth_token;
+          if (oauthToken && oauthVerifier) {
+            this.saveAccessToken(oauthToken, oauthVerifier);
+            this.tweeterConnectStatus = 'Changer de compte';
+          }
+        });
       }
     });
   }
@@ -46,7 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   redirectToTwitter() {
-    this.sessionService.getRedirectUrl().subscribe((res: any) => {
+    this.sessionService.getRedirectUrl().then((res: any) => {
       location.href = res.redirectUrl;
     });
   }
@@ -58,9 +71,27 @@ export class HomeComponent implements OnInit {
     }
 
     await this.twitterService.GetUserTweets().then((res: HttpResponse<any>) => {
-      this.tweets = res.body.data;
+      const tweets = res.body.data;
+      this.FilterTweets(tweets);
+      this.showfeed = true;
     }).catch(e => {
       throw e;
     });
+  }
+
+  FilterTweets(tweets: TweetModel[]) {
+    this.retweets = [];
+    this.tweets = [];
+    for (const elem of tweets) {
+      if (elem.retweeted === true) {
+        this.retweets.push(elem);
+      } else {
+        this.tweets.push(elem);
+      }
+    }
+  }
+
+  HideFeed() {
+    this.showfeed = false;
   }
 }

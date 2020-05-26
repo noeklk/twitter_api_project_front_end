@@ -22,11 +22,6 @@ export class AuthService {
 
     public isLoggedIn = false;
 
-    // User State
-    connectedUser = new ReplaySubject<ConnectedUserModel>();
-
-    testUser;
-
     constructor(private myRoute: Router, private http: HttpClient) { }
 
     GenerateHeader(): HttpHeaders {

@@ -8,8 +8,8 @@ import { AccessTokenModel } from '../model/access-tokens';
 export class SessionService {
     constructor(private http: HttpClient) { }
 
-    getRedirectUrl() {
-        return this.http.get(`${environment.nodejs_api_host}${environment.nodejs_api_route.session.connect}`);
+    getRedirectUrl(): Promise<HttpResponse<any>> {
+        return this.http.get<any>(`${environment.nodejs_api_host}${environment.nodejs_api_route.session.connect}`).toPromise();
     }
 
     saveAccessToken(oauthToken: string, oauthVerifier: string): Promise<HttpResponse<AccessTokenModel>> {

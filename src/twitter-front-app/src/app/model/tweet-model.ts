@@ -1,6 +1,5 @@
 export interface TweetModel {
-    data: {
-        created_at: Date;
-        text: string;
-    };
+    created_at: Date;
+    text: string;
+    retweeted: boolean;
 }
