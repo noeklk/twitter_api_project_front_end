@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './component/home/home.component';
 import { NavComponent } from './component/nav/nav.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
+import { BarChartComponent } from './template/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SignupFormComponent } from './component/signup-form/signup-form.compone
     LoginFormComponent,
     HomeComponent,
     NavComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
