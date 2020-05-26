@@ -3,12 +3,16 @@
     flex-direction: column;
     display: flex;
     margin: 50px auto;
-    background: #f7f7f7;
+    background: hsl(0, 0%, 97%);
     padding: 50px;
+    position: relative;
+    height: 240px;
 
 
     .spinner {
-        margin-top: 20px;
+        position: absolute;
+        left: 70%;
+        bottom: 56.5px;
     }
 
     .signup-a {

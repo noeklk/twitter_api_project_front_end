@@ -43,7 +43,6 @@ export class HomeComponent implements OnInit {
 
     await this.twitterService.GetUserTweets().then((res: HttpResponse<any>) => {
       this.tweets = res.body.data;
-
     }).catch(e => {
       throw e;
     });
