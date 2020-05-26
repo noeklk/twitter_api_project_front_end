@@ -21,20 +21,22 @@
     <div class="container-login">
 
         <!-- Redirection signup -->
-    <a class="signup-a" routerLink="/signup">Je n'ai pas de compte</a>
-    <button *ngIf="!submitted"
-    class="validation-button" 
-    mat-raised-button color="primary" 
-    [disabled]="!loginForm.valid"
-    >
-    Se connecter
-    </button>
+        <a class="signup-a" routerLink="/signup">Je n'ai pas de compte</a>
+        
+        <button *ngIf="!submitted"
+        class="validation-button" 
+        mat-raised-button color="primary" 
+        [disabled]="!loginForm.valid"
+        >
+        Se connecter
+        </button>
     </div>
     
-    
+    <br />
+
     <!-- Affichage d'erreur -->
     <div class="error-handler" *ngIf="errorMessage">
-        <br />
+        
         <mat-icon color="warn">warning</mat-icon><mat-error>{{ errorMessage }} !</mat-error>
     </div>
 
@@ -42,5 +44,5 @@
 
     <!-- Spinner -->
     <mat-spinner class="spinner" *ngIf="submitted" [diameter]="55"></mat-spinner>
-
+    
 </form>
