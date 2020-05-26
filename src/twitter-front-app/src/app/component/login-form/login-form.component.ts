@@ -18,16 +18,12 @@ export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   errorMessage: string;
-  keywords: KeywordModel[];
-  labels = [];
-  series = [];
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private myRoute: Router,
-    private keywordService: KeywordService
-  ) { }
+    private myRoute: Router
+    ) { }
 
   ngOnInit(): void {
     // LoginForm builder
