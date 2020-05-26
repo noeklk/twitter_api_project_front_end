@@ -5,6 +5,8 @@ import { LoginResponseModel } from 'src/app/model/login-response';
 import { AuthService } from 'src/app/service/auth.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { KeywordService } from 'src/app/service/keyword.service';
+import { KeywordModel } from 'src/app/model/keyword';
 
 @Component({
   selector: 'app-login-form',
@@ -16,11 +18,15 @@ export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   errorMessage: string;
+  keywords: KeywordModel[];
+  labels = [];
+  series = [];
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private myRoute: Router
+    private myRoute: Router,
+    private keywordService: KeywordService
   ) { }
 
   ngOnInit(): void {

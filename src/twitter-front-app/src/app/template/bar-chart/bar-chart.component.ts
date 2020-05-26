@@ -14,8 +14,8 @@ import { ChartEvent, ChartType } from 'ng-chartist';
 export class BarChartComponent implements OnInit {
 
   // Les données passé par le parent
-  @Input() labels = [];
-  @Input() series = [];
+  @Input() labels;
+  @Input() series;
 
   // Initialisation des varibles pour le bar-chart
   type: ChartType;
@@ -30,7 +30,7 @@ export class BarChartComponent implements OnInit {
 
     this.data = {
       labels: this.labels,
-      series: this.series
+      series: [this.series]
     };
 
     this.options = {
