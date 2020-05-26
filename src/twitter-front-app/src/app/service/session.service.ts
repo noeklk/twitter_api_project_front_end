@@ -8,11 +8,11 @@ import { AccessTokenModel } from '../model/access-tokens';
 export class SessionService {
     constructor(private http: HttpClient) { }
 
-    getRedirectUrl(): Promise<HttpResponse<any>> {
+    GetRedirectUrl(): Promise<HttpResponse<any>> {
         return this.http.get<any>(`${environment.nodejs_api_host}${environment.nodejs_api_route.session.connect}`).toPromise();
     }
 
-    saveAccessToken(oauthToken: string, oauthVerifier: string): Promise<HttpResponse<AccessTokenModel>> {
+    SaveAccessToken(oauthToken: string, oauthVerifier: string): Promise<HttpResponse<AccessTokenModel>> {
         console.log('Sauvegarde des tokens dans le back');
         return this.http.get<AccessTokenModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.session.save_access_tokens}?oauth_token=${oauthToken}&oauth_verifier=${oauthVerifier}`, { observe: 'response' }).toPromise();
     }

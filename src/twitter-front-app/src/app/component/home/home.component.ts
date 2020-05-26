@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SessionService } from 'src/app/service/session.service';
 import { HttpResponse } from '@angular/common/http';
 import { AccessTokenModel } from 'src/app/model/access-tokens';
-import { TweetModel } from 'src/app/model/tweet-model';
+import { TweetModel } from 'src/app/model/tweet';
 
 @Component({
   selector: 'app-home',
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
           const oauthVerifier = params.oauth_verifier;
           const oauthToken = params.oauth_token;
           if (oauthToken && oauthVerifier) {
-            this.saveAccessToken(oauthToken, oauthVerifier);
+            this.SaveAccessToken(oauthToken, oauthVerifier);
             this.tweeterConnectStatus = 'Changer de compte';
           }
         });
@@ -45,9 +45,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  async saveAccessToken(oauthToken: string, oauthVerifier: string) {
+  async SaveAccessToken(oauthToken: string, oauthVerifier: string) {
 
-    await this.sessionService.saveAccessToken(oauthToken, oauthVerifier).then((res: HttpResponse<AccessTokenModel>) => {
+    await this.sessionService.SaveAccessToken(oauthToken, oauthVerifier).then((res: HttpResponse<AccessTokenModel>) => {
       localStorage.setItem('oauthAccessToken', res.body.oauthAccessToken);
       localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
 
@@ -58,8 +58,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  redirectToTwitter() {
-    this.sessionService.getRedirectUrl().then((res: any) => {
+  RedirectToTwitter() {
+    this.sessionService.GetRedirectUrl().then((res: any) => {
       location.href = res.redirectUrl;
     });
   }
