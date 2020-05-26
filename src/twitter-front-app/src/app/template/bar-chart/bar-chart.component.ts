@@ -44,12 +44,12 @@ export class BarChartComponent implements OnInit {
       draw: (data) => {
         if (data.type === 'bar') {
           data.element.animate({
-            y2: <IChartistAnimationOptions>{
+            y2: {
               dur: '0.5s',
               from: data.y1,
               to: data.y2,
               easing: 'easeOutQuad'
-            }
+            } as IChartistAnimationOptions
           });
         }
       }

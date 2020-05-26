@@ -8,7 +8,7 @@ export class KeywordService {
 
   constructor() { }
 
-  getKeywordsByKeywordAndUserId(keyword?: string, user_id?: string): Promise<KeywordModel[]> {
+  getKeywordsByKeywordAndUserId(keyword?: string, userId?: string): Promise<KeywordModel[]> {
     // Temporary returns mock data
     return Promise.all(MOCKKEYWORDS);
   }
