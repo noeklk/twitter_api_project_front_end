@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   labels = [];
   series = [];
   specificKeywords = new Array<KeywordModel>();
-  inputKeyword = '';
+  inputKeyword = 'covid19';
 
   tweeterConnectStatus = 'Se connecter à Twitter';
 
