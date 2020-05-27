@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
 
   labels = [];
   series = [];
-  specificKeywords: KeywordModel[];
+  specificKeywords = new Array<KeywordModel>();
 
   tweeterConnectStatus = 'Se connecter à Twitter';
 
@@ -43,17 +43,13 @@ export class HomeComponent implements OnInit {
     await this.sessionService.CheckAccessTokens().then((res) => {
       if (res) {
         this.tweeterConnectStatus = 'Changer de compte';
-        this.GetAllKeywordsByIdUser();
-
       } else {
         this.activatedRoute.queryParams.subscribe(params => {
-          console.log(params);
           const oauthVerifier = params.oauth_verifier;
           const oauthToken = params.oauth_token;
           if (oauthToken && oauthVerifier) {
             this.SaveAccessToken(oauthToken, oauthVerifier);
             this.tweeterConnectStatus = 'Changer de compte';
-            this.GetAllKeywordsByIdUser();
           }
         });
       }
@@ -64,7 +60,6 @@ export class HomeComponent implements OnInit {
     await this.sessionService.SaveAccessToken(oauthToken, oauthVerifier).then((res: HttpResponse<AccessTokenModel>) => {
       localStorage.setItem('oauthAccessToken', res.body.oauthAccessToken);
       localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
-
       alert('Token saved');
     }).catch(e => {
       const errorMessage = e.error.message ? e.error.message : 'Erreur de connexion avec l\'Api';
@@ -74,7 +69,6 @@ export class HomeComponent implements OnInit {
 
   RedirectToTwitter() {
     this.sessionService.GetRedirectUrl().then((res: any) => {
-      console.log(res);
       location.href = res.body.redirectUrl;
     });
   }
@@ -119,19 +113,20 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  async GetKeywordsByIdUserAndKeyword(keyword: string) {
+  GetKeywordsByIdUserAndKeyword(keyword = 'covid19') {
     this.keywordService.GetKeywordByIdUserAndKeyword(keyword)
       .then(res => {
         this.specificKeywords = res.body;
+        console.log(res.body);
         this.setLabelsAndSeriesFromKeywords(res.body);
       }).catch(e => {
         throw e;
       });
   }
 
-  setLabelsAndSeriesFromKeywords(keywords) {
+  setLabelsAndSeriesFromKeywords(keywords: KeywordModel[]) {
     for (const keyword of keywords) {
-      this.labels.push(keyword.keyword);
+      this.labels.push(keyword.created_at);
       this.series.push(keyword.tweets_number);
     }
   }

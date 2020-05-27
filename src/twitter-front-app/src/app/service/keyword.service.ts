@@ -16,13 +16,13 @@ export class KeywordService {
 
   GetAllKeywordsByUserId(): Promise<HttpResponse<KeywordModel[]>> {
     const res = this.http.get<KeywordModel[]>(`${this._getAllKeywordsByUserIdUrl}/${this.authService.GetUserId()}/keywords`,
-      { headers: this.sessionService.GenerateAllTokensHeader(), observe: 'response' }).toPromise();
+      { headers: this.authService.GenerateTokenHeader(), observe: 'response' }).toPromise();
     return res;
   }
 
   GetKeywordByIdUserAndKeyword(keyword: string): Promise<HttpResponse<KeywordModel[]>> {
     const res = this.http.get<KeywordModel[]>(`${this._getKeywordsByUserIdAndKeywordUrl}/${this.authService.GetUserId()}/keywords/${keyword}`,
-      { headers: this.sessionService.GenerateAllTokensHeader(), observe: 'response' }).toPromise();
+      { headers: this.authService.GenerateTokenHeader(), observe: 'response' }).toPromise();
     return res;
   }
 }
