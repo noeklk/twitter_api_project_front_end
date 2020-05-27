@@ -100,20 +100,32 @@
         margin-top: 10px;
         display: flex;
         flex-direction: row;
-        color: red;
         justify-content: space-evenly;
+        align-items: center;
+        
+        &--favorite {
+            color: rgb(224, 36, 94);
+            display: flex;
+            align-items: center;          ;
+        }
+
+        &--retweet {
+            color: rgb(23, 191, 99);
+            display: flex;
+            align-items: center;  
+        }
     }
 }
 
 .favorite-img {
-    background: url("../../../assets/heart.svg");
+    background: url("../../../assets/twitter-like.svg");
     height: 20px;
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .retweet-img {
-    background: url("../../../assets/reet.svg");
+    background: url("../../../assets/twitter-test-retweet.svg");
     height: 20px;
     background-size: contain;
     background-repeat: no-repeat;
