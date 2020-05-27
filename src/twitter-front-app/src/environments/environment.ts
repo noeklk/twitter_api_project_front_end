@@ -16,7 +16,14 @@ export const environment = {
 
       delete_a_user_by_id: 'users/'
     },
-    token_check: 'token/'
+    token_check: 'token/',
+    session: {
+      connect: 'sessions/connect',
+      save_access_tokens: 'sessions/save_access_tokens'
+    },
+    twitter: {
+      get_user_tweets: 'twitter/get_user_tweets'
+    }
   }
 };
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tweet',
@@ -8,10 +9,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TweetComponent implements OnInit {
 
   @Input() tweet;
+  media = [];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    if(this.tweet.entities.media) {
+      console.log("c'est goood mon bro");
+      
+      console.log(this.tweet.entities.media[0].media_url_https);
+    }
+    
   }
 
 }

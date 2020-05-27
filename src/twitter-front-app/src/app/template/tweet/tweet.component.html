@@ -1,13 +1,13 @@
 <div class="tweet">
     <div class="tweet__profile">
-        <img src="tweet.user.profile_image_url_https" alt="">
+        <img src="{{tweet.user.profile_image_url_https}}" alt="">
     </div>
     <div class="tweet__body">
         <div class="tweet__body--user">
             {{ tweet.user.name }} <span class="username">@{{ tweet.user.screen_name }}</span>
         </div>
         <div class="tweet__body--date">
-            {{ tweet.created_at }}
+            {{ tweet.created_at | date: 'short'}}
         </div>
         <div class="tweet__body--description">
             {{ tweet.text }}
@@ -18,7 +18,7 @@
            </ng-container>
         </div>
         <div class="tweet__body--img">
-            <img src="tweet.entities.media[0].media_url_https" height="365" width="456">
+            <img *ngIf="tweet.entities.media" src="{{tweet.entities.media[0].media_url_https}}" height="365" width="456">
         </div>
 
     </div>
