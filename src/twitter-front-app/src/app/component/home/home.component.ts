@@ -31,8 +31,8 @@ export class HomeComponent implements OnInit {
 
   keywords: KeywordModel[];
 
-  labels;
-  series;
+  labels = [];
+  series = [];
 
   tweeterConnectStatus = 'Se connecter à Twitter';
 
@@ -112,9 +112,19 @@ export class HomeComponent implements OnInit {
   async GetAllKeywordsByIdUser() {
     this.keywords = await this.keywordService.GetAllKeywordsByUserId(this.authService.GetUserId())
       .then(res => {
+        this.setLabelsAndSeriesFromKeywords(res.body);
         return res.body;
       }).catch(e => {
         throw e;
       });
   }
+
+  setLabelsAndSeriesFromKeywords(keywords) {
+    for (const keyword of keywords) {
+      this.labels.push(keyword.keyword);
+      this.series.push(keyword.tweets_number);
+    }
+  }
+
+
 }
