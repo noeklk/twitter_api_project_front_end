@@ -8,6 +8,7 @@ export class HashtagPipe implements PipeTransform {
     transform(text: string): SafeHtml {
         if (text) {
             return this.sanitizer.bypassSecurityTrustHtml(
+                //le regex match les mots qui commence avec un '#'
                 text.replace(/#[^\s]+\s?/, (match) => `<span style="color: blue;">${match}</span>`)
             );
 
