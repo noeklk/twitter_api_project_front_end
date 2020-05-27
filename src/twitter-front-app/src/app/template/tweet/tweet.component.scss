@@ -42,12 +42,6 @@
             margin-bottom: 10px;
         }
 
-        &--hashtags {
-            color: rgb(0, 38, 255);
-            margin-bottom: 10px;
-            display: none;
-        }
-
         &--img {
             img {
                 border-radius: 15px;
@@ -91,12 +85,6 @@
 
             &__description {
                 white-space: pre-line;
-            }
-
-            &__hashtags {
-                color: rgb(0, 38, 255);
-                margin-bottom: 10px;
-                display: none;
             }
 
             &__img {

@@ -12,11 +12,6 @@
         <div class="tweet__body--description" >
             <span [innerHTML]="tweet.text | hashtag"></span>
         </div>
-        <div class="tweet__body--hashtags">
-            <ng-container *ngFor="let hashtag of tweet.entities.hashtags">
-                #{{ hashtag.text }}
-            </ng-container>
-        </div>
         <div class="tweet__body--img">
             <img *ngIf="tweet.entities.media" src="{{tweet.entities.media[0].media_url_https}}" height="365"
                 width="456">
@@ -50,11 +45,6 @@
         <div class="tweet__body--description">
             <span [innerHTML]="tweet.text | hashtag"></span>
         </div>
-        <div class="tweet__body--hashtags">
-            <ng-container *ngFor="let hashtag of tweet.entities.hashtags">
-                #{{ hashtag.text }}
-            </ng-container>
-        </div>
         <div class="tweet__body--img">
             <img *ngIf="tweet.entities.media" src="{{tweet.entities.media[0].media_url_https}}" height="365"
                 width="456">
@@ -73,11 +63,6 @@
             </div>
             <div class="retweet__description">
                 <span [innerHTML]="tweet.quoted_status.text | hashtag"></span>
-            </div>
-            <div class="retweet__hashtags">
-                <ng-container *ngFor="let hashtag of tweet.quoted_status.entities.hashtags">
-                    #{{ hashtag.text }}
-                </ng-container>
             </div>
             <div class="retweet__img">
                 <img *ngIf="tweet.quoted_status.entities.media"
