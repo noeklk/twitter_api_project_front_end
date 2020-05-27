@@ -1,12 +1,45 @@
-button {
-    margin: 0 5px;
+
+.container {
+    max-width: 1080px;
+    margin: auto;
 }
 
-.buttons-container {
-    margin-left: 30px;
-    margin-top: 15px
+.keyword {
+    margin-bottom: 10px;
+    text-decoration: none;
+    width: 100%;
+    display: inline-block;
+    color: #000000;
 }
 
-.twitter-logo {
-    background: url("../../../assets/twitter.svg");
+.keyword:hover {
+    color: #4050B5;
+}
+
+.keyword-content {
+    background-color : #FFFFFF;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.keyword-content h3 {
+    text-transform: uppercase;
+}
+
+.tweets_number  {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    height: auto;
+}
+.tweets_number .number {
+    font-size: 48px;
+}
+
+.tweets_number .text {
+    font-size: 11px;
+    margin-top: 10px;
 }
