@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
     await this.sessionService.SaveAccessToken(oauthToken, oauthVerifier).then((res: HttpResponse<AccessTokenModel>) => {
       localStorage.setItem('oauthAccessToken', res.body.oauthAccessToken);
       localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
-      alert('Token saved');
+      console.log('Token enregistré');
       this.GetUserTweets();
     }).catch(e => {
       const errorMessage = e.error.message ? e.error.message : 'Erreur de connexion avec l\'Api';
