@@ -9,6 +9,7 @@ import { LoginFormComponent } from './component/login-form/login-form.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './component/home/home.component';
+import { KeywordComponent } from './component/keyword/keyword.component';
 import { NavComponent } from './component/nav/nav.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 
@@ -17,8 +18,9 @@ import { SignupFormComponent } from './component/signup-form/signup-form.compone
     AppComponent,
     LoginFormComponent,
     HomeComponent,
+    KeywordComponent,
     NavComponent,
-    SignupFormComponent
+    SignupFormComponent,
   ],
   imports: [
     BrowserModule,
