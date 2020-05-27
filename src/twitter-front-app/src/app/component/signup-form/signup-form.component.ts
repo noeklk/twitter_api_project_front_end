@@ -13,9 +13,9 @@ import { MessageModel } from 'src/app/model/message';
 })
 export class SignupFormComponent implements OnInit {
 
-    signupForm: FormGroup;
-    submitted = false;
-    errorMessage: string;
+  signupForm: FormGroup;
+  submitted = false;
+  errorMessage: string;
 
   constructor(
     private fb: FormBuilder,
@@ -26,37 +26,36 @@ export class SignupFormComponent implements OnInit {
   ngOnInit(): void {
     // SignupForm builder
     this.signupForm = this.fb.group({
-      pseudo: ['', [Validators.required, Validators.minLength(4)]],
-      password: ['', [Validators.required, Validators.minLength(4)]]
-  });
+      pseudo: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]],
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(40)]]
+    });
 
-}
-
-async Signup() {
-  if (!this.signupForm.valid) {
-    return;
   }
 
-  this.errorMessage = null;
-  this.submitted = true;
+  async Signup() {
+    if (!this.signupForm.valid) {
+      return;
+    }
 
-  const user: UserDto = {
-    pseudo: this.signupForm.value.pseudo,
-    password: this.signupForm.value.password
-  };
+    this.errorMessage = null;
+    this.submitted = true;
 
-  // signup le user
-  await this.authService.SignupUser(user).then((signupResponse: HttpResponse<MessageModel>) => {
+    const user: UserDto = {
+      pseudo: this.signupForm.value.pseudo,
+      password: this.signupForm.value.password
+    };
 
-    alert('Inscription effectué avec succès, veuillez maintenant vous connecter');
-    this.myRoute.navigate(['login']);
+    // signup le user
+    await this.authService.SignupUser(user).then((signupResponse: HttpResponse<MessageModel>) => {
 
-  }).catch((e: HttpErrorResponse) => {
-    this.errorMessage = e.error.message ? e.error.message : 'Erreur de connexion avec l\'Api';
-  }).finally(() => {
-    this.submitted = false;
-  });
+      alert('Inscription effectué avec succès, veuillez maintenant vous connecter');
+      this.myRoute.navigate(['login']);
 
-}
+    }).catch((e: HttpErrorResponse) => {
+      this.errorMessage = e.error.message ? e.error.message : 'Erreur de connexion avec l\'Api';
+    }).finally(() => {
+      this.submitted = false;
+    });
+  }
 }
 

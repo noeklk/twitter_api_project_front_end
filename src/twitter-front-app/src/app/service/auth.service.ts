@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
-import { ConnectedUserModel } from '../model/connected-user';
 import { Router } from '@angular/router';
 import { HttpErrorResponse, HttpResponse, HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageModel } from '../model/message';
@@ -21,11 +19,6 @@ export class AuthService {
     private _userIdName = 'userId';
 
     public isLoggedIn = false;
-
-    // User State
-    connectedUser = new ReplaySubject<ConnectedUserModel>();
-
-    testUser;
 
     constructor(private myRoute: Router, private http: HttpClient) { }
 
@@ -94,6 +87,8 @@ export class AuthService {
     Logout() {
         localStorage.removeItem(this._tokenName);
         localStorage.removeItem(this._userIdName);
+        localStorage.removeItem('oauthAccessToken');
+        localStorage.removeItem('oauthAccessTokenSecret');
         this.isLoggedIn = false;
         console.log('Déconnecté!');
         this.myRoute.navigate(['login']);
