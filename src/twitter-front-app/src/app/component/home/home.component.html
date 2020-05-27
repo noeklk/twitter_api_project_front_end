@@ -2,14 +2,12 @@
   <button mat-raised-button (click)="RedirectToTwitter()">{{tweeterConnectStatus}}
     <mat-icon class="twitter-logo"></mat-icon>
   </button>
-  <br />
-  <br />
-  <button mat-raised-button (click)="GetUserTweets()">Montrer/Mettre à jour fil twitter</button>
-  <button mat-raised-button (click)="HideFeed()">Cacher fil twitter</button>
+  <button mat-raised-button (click)="GetUserTweets()">Mettre à jour fil twitter</button>
+  
 </div>
 
 <div *ngIf="showfeed">
-  <div>
+  <div class="tweets-container mat-elevation-z8">
     <ol>
       <li *ngFor="let tweet of tweets">
         <app-tweet [tweet]="tweet"></app-tweet>
