@@ -22,6 +22,16 @@
                 width="456">
         </div>
 
+        <div class="tweet__footer">
+            <div class="tweet_footer--favorite">
+                <mat-icon class="favorite-img"></mat-icon>
+                {{tweet.favorite_count}}
+            </div>
+            <div class="tweet_footer--retweet">
+                <mat-icon class="retweet-img"></mat-icon>
+                {{tweet.retweet_count}}
+            </div>
+        </div>
     </div>
 </div>
 
@@ -42,7 +52,7 @@
         </div>
         <div class="tweet__body--hashtags">
             <ng-container *ngFor="let hashtag of tweet.entities.hashtags">
-                {{ hashtag.text }}
+                #{{ hashtag.text }}
             </ng-container>
         </div>
         <div class="tweet__body--img">
@@ -53,20 +63,36 @@
             <div class="retweet__header">
                 <img src="{{tweet.quoted_status.user.profile_image_url_https}}" alt="">
                 <div class="retweet__header--user">
-                    {{ tweet.quoted_status.user.name }} <span class="username"> @{{ tweet.quoted_status.user.screen_name }} </span>
+                    {{ tweet.quoted_status.user.name }} <span class="username">
+                        @{{ tweet.quoted_status.user.screen_name }} </span>
                 </div>
-                .
+                &nbsp;.&nbsp;
                 <div class="retweet__header--date">
-                     {{ tweet.quoted_status.created_at | date: 'short'}}
+                    {{ tweet.quoted_status.created_at | date: 'short'}}
                 </div>
             </div>
             <div class="retweet__description">
-
+                {{ tweet.quoted_status.text }}
+            </div>
+            <div class="retweet__hashtags">
+                <ng-container *ngFor="let hashtag of tweet.quoted_status.entities.hashtags">
+                    #{{ hashtag.text }}
+                </ng-container>
             </div>
             <div class="retweet__img">
-
+                <img *ngIf="tweet.quoted_status.entities.media"
+                    src="{{tweet.quoted_status.entities.media[0].media_url_https}}">
             </div>
         </div>
-
+        <div class="tweet__footer">
+            <div class="tweet_footer--favorite">
+                <mat-icon class="favorite-img"></mat-icon>
+                {{tweet.favorite_count}}
+            </div>
+            <div class="tweet_footer--retweet">
+                <mat-icon class="retweet-img"></mat-icon>
+                {{tweet.retweet_count}}
+            </div>
+        </div>
     </div>
 </div>

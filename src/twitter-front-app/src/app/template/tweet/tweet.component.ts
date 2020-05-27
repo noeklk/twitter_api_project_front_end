@@ -14,14 +14,21 @@ export class TweetComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if(this.tweet.entities.media) {
-      console.log("c'est goood mon bro");
-      
-      console.log(this.tweet.entities.media[0].media_url_https);
+    this.tweet.text = this.sanitizeText(this.tweet.text);
+
+    if (this.tweet.quoted_status) {
+      this.tweet.quoted_status.text = this.sanitizeText(this.tweet.quoted_status.text);
     }
-    console.log(this.tweet);
-    
-    
+  }
+
+  sanitizeText(text: string): string {
+    //replacing \n with <br>
+    let sanitizedText: string = text.replace("\n", "<br>");
+    // removing image url
+    if(this.tweet.entities.media && text.includes(this.tweet.entities.media[0].url)) {
+      sanitizedText = sanitizedText.replace(this.tweet.entities.media[0].url, "");
+    }
+    return sanitizedText;
   }
 
 }
