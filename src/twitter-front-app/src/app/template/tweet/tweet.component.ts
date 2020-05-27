@@ -12,9 +12,7 @@ export class TweetComponent implements OnInit {
   @Input() tweet;
   media = [];
 
-  constructor(
-    private router: Router,
-    private sanitizer: DomSanitizer) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.sanitizeText();

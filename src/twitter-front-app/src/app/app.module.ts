@@ -12,6 +12,7 @@ import { HomeComponent } from './component/home/home.component';
 import { NavComponent } from './component/nav/nav.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { TweetComponent } from './template/tweet/tweet.component';
+import { HashtagPipe } from './pipe/hashtag.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TweetComponent } from './template/tweet/tweet.component';
     HomeComponent,
     NavComponent,
     SignupFormComponent,
-    TweetComponent
+    TweetComponent,
+    HashtagPipe
   ],
   imports: [
     BrowserModule,

@@ -68,6 +68,7 @@
                 flex-direction: row;
                 align-items: center;
                 font-size: 13px;
+                margin-bottom: 5px;
 
                 &--user {
                     font-weight: bold;
@@ -128,7 +129,4 @@
     height: 20px;
     background-size: contain;
     background-repeat: no-repeat;
-}
-.highlight-hashtag {
-    color: red;
 }

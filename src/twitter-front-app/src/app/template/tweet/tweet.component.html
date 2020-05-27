@@ -10,7 +10,7 @@
             {{ tweet.created_at | date: 'short'}}
         </div>
         <div class="tweet__body--description" >
-            {{ tweet.text }}
+            <span [innerHTML]="tweet.text | hashtag"></span>
         </div>
         <div class="tweet__body--hashtags">
             <ng-container *ngFor="let hashtag of tweet.entities.hashtags">
@@ -48,7 +48,7 @@
             {{ tweet.created_at | date: 'short'}}
         </div>
         <div class="tweet__body--description">
-            {{ tweet.text }}
+            <span [innerHTML]="tweet.text | hashtag"></span>
         </div>
         <div class="tweet__body--hashtags">
             <ng-container *ngFor="let hashtag of tweet.entities.hashtags">
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="retweet__description">
-                {{ tweet.quoted_status.text }}
+                <span [innerHTML]="tweet.quoted_status.text | hashtag"></span>
             </div>
             <div class="retweet__hashtags">
                 <ng-container *ngFor="let hashtag of tweet.quoted_status.entities.hashtags">
