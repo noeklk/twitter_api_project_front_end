@@ -1,0 +1,145 @@
+<div class="tweet" *ngIf="!tweet.quoted_status && !tweet.retweeted_status">
+    <div class="tweet__profile">
+        <img src="{{tweet.user.profile_image_url_https}}" alt="">
+    </div>
+    <div class="tweet__body">
+        <div class="tweet__body--user">
+            {{ tweet.user.name }} <span class="username">@{{ tweet.user.screen_name }}</span>
+        </div>
+        <div class="tweet__body--date">
+            {{ tweet.created_at | date: 'short'}}
+        </div>
+        <div class="tweet__body--description" >
+            <span [innerHTML]="tweet.text | hashtag"></span>
+        </div>
+        <div class="tweet__body--img">
+            <img *ngIf="tweet.entities.media" src="{{tweet.entities.media[0].media_url_https}}">
+        </div>
+        <div class="retweet__url" *ngIf="tweet.entities.urls.length > 0">
+            <a href="{{tweet.entities.urls[0].expanded_url}}">
+                {{tweet.entities.urls[0].expanded_url}}
+            </a>
+        </div>
+        <div class="tweet__footer">
+            <div class="tweet__footer--retweet">
+                <mat-icon class="retweet-img"></mat-icon>
+                {{tweet.retweet_count}}
+            </div>
+            <div class="tweet__footer--favorite">
+                <mat-icon class="favorite-img"></mat-icon>
+                {{tweet.favorite_count}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Retweet with comment -->
+<div class="tweet" *ngIf="tweet.quoted_status && !tweet.retweeted_status">
+    <div class="tweet__profile">
+        <img src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png" alt="">
+    </div>
+    <div class="tweet__body">
+        <div class="tweet__body--user">
+            {{ tweet.user.name }} <span class="username">@{{ tweet.user.screen_name }}</span>
+        </div>
+        <div class="tweet__body--date">
+            {{ tweet.created_at | date: 'short'}}
+        </div>
+        <div class="tweet__body--description">
+            <span [innerHTML]="tweet.text | hashtag"></span>
+        </div>
+        <div class="tweet__body--img">
+            <img *ngIf="tweet.entities.media" src="{{tweet.entities.media[0].media_url_https}}" height="365"
+                width="456">
+        </div>
+        <div class="retweet">
+            <div class="retweet__header">
+                <img src="{{tweet.quoted_status.user.profile_image_url_https}}" alt="">
+                <div class="retweet__header--user">
+                    {{ tweet.quoted_status.user.name }} <span class="username">
+                        @{{ tweet.quoted_status.user.screen_name }} </span>
+                </div>
+                &nbsp;.&nbsp;
+                <div class="retweet__header--date">
+                    {{ tweet.quoted_status.created_at | date: 'short'}}
+                </div>
+            </div>
+            <div class="retweet__description">
+                <span [innerHTML]="tweet.quoted_status.text | hashtag"></span>
+            </div>
+            <div class="retweet__img">
+                <img *ngIf="tweet.quoted_status.entities.media"
+                    src="{{tweet.quoted_status.entities.media[0].media_url_https}}">
+            </div>
+            <div class="retweet__url" *ngIf="tweet.quoted_status.entities.urls.length > 0">
+                <a href="{{tweet.quoted_status.entities.urls[0].expanded_url}}">
+                    {{tweet.quoted_status.entities.urls[0].expanded_url}}
+                </a>
+            </div>
+        </div>
+        <div class="tweet__footer">
+            <div class="tweet__footer--retweet">
+                <mat-icon class="retweet-img"></mat-icon>
+                {{tweet.quoted_status.retweet_count}}
+            </div>
+            <div class="tweet__footer--favorite">
+                <mat-icon class="favorite-img"></mat-icon>
+                {{tweet.quoted_status.favorite_count}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Retweet with no comment -->
+<div class="tweet" *ngIf="tweet.retweeted_status">
+    <div class="tweet__profile">
+        <img src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png" alt="">
+    </div>
+    <div class="tweet__body">
+        <div class="tweet__body--user">
+            {{ tweet.user.name }} <span class="username">@{{ tweet.user.screen_name }}</span>
+        </div>
+        <div class="tweet__body--date">
+            {{ tweet.created_at | date: 'short'}}
+        </div>
+        <div class="tweet__body--img">
+            <img *ngIf="tweet.entities.media" src="{{tweet.entities.media[0].media_url_https}}" height="365"
+                width="456">
+        </div>
+        <div class="retweet">
+            <div class="retweet__header">
+                <img src="{{tweet.retweeted_status.user.profile_image_url_https}}" alt="">
+                <div class="retweet__header--user">
+                    {{ tweet.retweeted_status.user.name }} <span class="username">
+                        @{{ tweet.retweeted_status.user.screen_name }} </span>
+                </div>
+                &nbsp;.&nbsp;
+                <div class="retweet__header--date">
+                    {{ tweet.retweeted_status.created_at | date: 'short'}}
+                </div>
+            </div>
+            <div class="retweet__description">
+                <span [innerHTML]="tweet.retweeted_status.text | hashtag"></span>
+            </div>
+            <div class="retweet__img" *ngIf="tweet.retweeted_status.entities.media">
+                <img 
+                    src="{{tweet.retweeted_status.entities.media[0].media_url_https}}">
+            </div>
+            <div class="retweet__url" *ngIf="tweet.retweeted_status.entities.urls.length > 0">
+                <a href="{{tweet.retweeted_status.entities.urls[0].expanded_url}}">
+                    {{tweet.retweeted_status.entities.urls[0].expanded_url}}
+                </a>
+            </div>
+        </div>
+        <div class="tweet__footer">
+            <div class="tweet__footer--retweet">
+                <mat-icon class="retweet-img"></mat-icon>
+                {{tweet.retweeted_status.retweet_count}}
+            </div>
+            <div class="tweet__footer--favorite">
+                <mat-icon class="favorite-img"></mat-icon>
+                {{tweet.retweeted_status.favorite_count}}
+            </div>
+        </div>
+    </div>
+</div>
