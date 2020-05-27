@@ -28,12 +28,14 @@ export class HomeComponent implements OnInit {
   retweets = new Array<TweetModel>();
 
   showfeed = false;
+  connected = false;
 
   keywords: KeywordModel[];
 
   labels = [];
   series = [];
   specificKeywords = new Array<KeywordModel>();
+  inputKeyword = '';
 
   tweeterConnectStatus = 'Se connecter à Twitter';
 
@@ -43,6 +45,8 @@ export class HomeComponent implements OnInit {
     await this.sessionService.CheckAccessTokens().then((res) => {
       if (res) {
         this.tweeterConnectStatus = 'Changer de compte';
+        this.connected = true;
+        this.GetUserTweets();
       } else {
         this.activatedRoute.queryParams.subscribe(params => {
           const oauthVerifier = params.oauth_verifier;
@@ -50,6 +54,7 @@ export class HomeComponent implements OnInit {
           if (oauthToken && oauthVerifier) {
             this.SaveAccessToken(oauthToken, oauthVerifier);
             this.tweeterConnectStatus = 'Changer de compte';
+            this.connected = true;
           }
         });
       }
@@ -61,6 +66,7 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('oauthAccessToken', res.body.oauthAccessToken);
       localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
       alert('Token saved');
+      this.GetUserTweets();
     }).catch(e => {
       const errorMessage = e.error.message ? e.error.message : 'Erreur de connexion avec l\'Api';
       console.log(errorMessage);
@@ -89,14 +95,9 @@ export class HomeComponent implements OnInit {
   }
 
   FilterTweets(tweets: TweetModel[]) {
-    this.retweets = [];
     this.tweets = [];
     for (const elem of tweets) {
-      if (elem.retweeted === true) {
-        this.retweets.push(elem);
-      } else {
-        this.tweets.push(elem);
-      }
+      this.tweets.push(elem);
     }
   }
 
@@ -113,7 +114,7 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  GetKeywordsByIdUserAndKeyword(keyword = 'covid19') {
+  GetKeywordsByIdUserAndKeyword(keyword) {
     this.keywordService.GetKeywordByIdUserAndKeyword(keyword)
       .then(res => {
         this.specificKeywords = res.body;

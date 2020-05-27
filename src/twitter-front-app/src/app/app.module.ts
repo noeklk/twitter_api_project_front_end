@@ -13,6 +13,9 @@ import { NavComponent } from './component/nav/nav.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { BarChartComponent } from './template/bar-chart/bar-chart.component';
 import { ChartistModule } from 'ng-chartist';
+import { TweetComponent } from './template/tweet/tweet.component';
+import { HashtagPipe } from './pipe/hashtag.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { ChartistModule } from 'ng-chartist';
     HomeComponent,
     NavComponent,
     SignupFormComponent,
-    BarChartComponent
+    BarChartComponent,
+    TweetComponent,
+    HashtagPipe
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,8 @@ import { ChartistModule } from 'ng-chartist';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ChartistModule
+    ChartistModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
