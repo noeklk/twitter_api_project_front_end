@@ -10,9 +10,6 @@
 
 <div *ngIf="showfeed">
   <div>
-    <h2>
-      Tweets
-    </h2>
     <ol>
       <li *ngFor="let tweet of tweets">
         <app-tweet [tweet]="tweet"></app-tweet>
