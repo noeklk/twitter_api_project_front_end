@@ -6,11 +6,13 @@ import { environment } from 'src/environments/environment';
     providedIn: 'root'
 })
 export class TwitterService {
+    private _getUserTweetsUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_tweets}`;
+
     constructor(private http: HttpClient, private sessionService: SessionService) { }
 
     GetUserTweets(): Promise<HttpResponse<JSON>> {
-        const res = this.http.get<JSON>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_tweets}`,
-            { headers: this.sessionService.GenerateAccessTokenHeader(), observe: 'response' }).toPromise();
+        const res = this.http.get<JSON>(this._getUserTweetsUrl,
+            { headers: this.sessionService.GenerateAllTokensHeader(), observe: 'response' }).toPromise();
         return res;
     }
 

@@ -1,3 +1,6 @@
+import { AuthService } from 'src/app/service/auth.service';
+import { KeywordService } from './../../service/keyword.service';
+import { KeywordModel } from './../../model/keyword';
 import { TwitterService } from './../../service/twitter.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -16,13 +19,20 @@ export class HomeComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionService: SessionService,
-    private twitterService: TwitterService
+    private twitterService: TwitterService,
+    private keywordService: KeywordService,
+    private authService: AuthService
   ) { }
 
   tweets = new Array<TweetModel>();
   retweets = new Array<TweetModel>();
 
   showfeed = false;
+
+  keywords: KeywordModel[];
+
+  labels;
+  series;
 
   tweeterConnectStatus = 'Se connecter à Twitter';
 
@@ -32,13 +42,17 @@ export class HomeComponent implements OnInit {
     await this.sessionService.CheckAccessTokens().then((res) => {
       if (res) {
         this.tweeterConnectStatus = 'Changer de compte';
+        this.GetAllKeywordsByIdUser();
+
       } else {
         this.activatedRoute.queryParams.subscribe(params => {
+          console.log(params);
           const oauthVerifier = params.oauth_verifier;
           const oauthToken = params.oauth_token;
           if (oauthToken && oauthVerifier) {
             this.SaveAccessToken(oauthToken, oauthVerifier);
             this.tweeterConnectStatus = 'Changer de compte';
+            this.GetAllKeywordsByIdUser();
           }
         });
       }
@@ -46,7 +60,6 @@ export class HomeComponent implements OnInit {
   }
 
   async SaveAccessToken(oauthToken: string, oauthVerifier: string) {
-
     await this.sessionService.SaveAccessToken(oauthToken, oauthVerifier).then((res: HttpResponse<AccessTokenModel>) => {
       localStorage.setItem('oauthAccessToken', res.body.oauthAccessToken);
       localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
@@ -60,7 +73,8 @@ export class HomeComponent implements OnInit {
 
   RedirectToTwitter() {
     this.sessionService.GetRedirectUrl().then((res: any) => {
-      location.href = res.redirectUrl;
+      console.log(res);
+      location.href = res.body.redirectUrl;
     });
   }
 
@@ -93,5 +107,14 @@ export class HomeComponent implements OnInit {
 
   HideFeed() {
     this.showfeed = false;
+  }
+
+  async GetAllKeywordsByIdUser() {
+    this.keywords = await this.keywordService.GetAllKeywordsByUserId(this.authService.GetUserId())
+      .then(res => {
+        return res.body;
+      }).catch(e => {
+        throw e;
+      });
   }
 }

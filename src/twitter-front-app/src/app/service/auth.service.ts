@@ -22,7 +22,7 @@ export class AuthService {
 
     constructor(private myRoute: Router, private http: HttpClient) { }
 
-    GenerateHeader(): HttpHeaders {
+    GenerateTokenHeader(): HttpHeaders {
         return new HttpHeaders({
             Authorization: this.GetToken()
         });
@@ -44,14 +44,13 @@ export class AuthService {
         localStorage.setItem(this._userIdName, id);
     }
 
-    GetUserId(): Promise<string> {
-        return new Promise((resolve, reject) => {
-            resolve(localStorage.getItem(this._userIdName));
-        });
+    GetUserId(): string {
+        return localStorage.getItem(this._userIdName);
     }
 
     CheckToken(): Promise<HttpResponse<MessageModel>> {
-        const res = this.http.get<MessageModel>(this._tokenCheckUrl, { headers: this.GenerateHeader(), observe: 'response' }).toPromise();
+        const res = this.http.get<MessageModel>(this._tokenCheckUrl,
+            { headers: this.GenerateTokenHeader(), observe: 'response' }).toPromise();
         return res;
     }
 
