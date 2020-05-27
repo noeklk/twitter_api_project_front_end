@@ -2,7 +2,7 @@
   <button mat-raised-button (click)="RedirectToTwitter()">{{tweeterConnectStatus}}
     <mat-icon class="twitter-logo"></mat-icon>
   </button>
-  <button mat-raised-button (click)="GetUserTweets()">Mettre à jour fil twitter</button>
+  <button mat-raised-button (click)="GetUserTweets()" *ngIf="showfeed">Mettre à jour fil twitter</button>
   
 </div>
 
