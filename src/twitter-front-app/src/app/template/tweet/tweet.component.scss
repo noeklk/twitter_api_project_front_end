@@ -11,7 +11,7 @@
         background-color: #f1f1f1;
     }
 
-    .tweet__profile {
+    &__profile {
         width: 10%;
 
         img {
@@ -20,7 +20,7 @@
         }
     }
 
-    .tweet__body {
+    &__body {
         width: 90%;
 
         &--user {
@@ -48,6 +48,50 @@
             img {
                 border-radius: 15px;
             }
+        }
+
+        .retweet {
+            display: flex;
+            flex-direction: column;
+            border: 0.3px solid;
+            border-color: rgba(0, 0, 0 , 0.3);
+            border-radius: 10px;
+            padding: 10px;
+
+            &__header {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                font-size: 13px;
+
+                &--user {
+                    font-weight: bold;
+                }
+
+                &--date {
+                    font-size: 10px;
+                }
+
+                img {
+                    width: 22px;
+                    border-radius: 50%;
+                    margin-right: 5px;
+                }
+
+                .username {
+                    color: rgb(173, 173, 173);
+                }
+
+            }
+            
+            &__description {
+
+            }
+
+            &__img {
+
+            }
+
         }
     }
 }

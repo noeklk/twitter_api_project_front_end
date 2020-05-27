@@ -19,6 +19,8 @@ export class TweetComponent implements OnInit {
       
       console.log(this.tweet.entities.media[0].media_url_https);
     }
+    console.log(this.tweet);
+    
     
   }
 

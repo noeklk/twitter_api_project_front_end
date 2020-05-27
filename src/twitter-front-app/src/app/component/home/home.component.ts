@@ -80,14 +80,9 @@ export class HomeComponent implements OnInit {
   }
 
   FilterTweets(tweets: TweetModel[]) {
-    this.retweets = [];
     this.tweets = [];
     for (const elem of tweets) {
-      if (elem.retweeted === true) {
-        this.retweets.push(elem);
-      } else {
-        this.tweets.push(elem);
-      }
+      this.tweets.push(elem);
     }
   }
 
