@@ -13,6 +13,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class TwitterTrendsComponent implements OnInit {
 
   public loading = false;
+  public optionSelected = false;
 
   public options = [];
 
@@ -50,7 +51,10 @@ export class TwitterTrendsComponent implements OnInit {
       .catch(error => {
         console.log(error);
       })
-      .finally(() => this.loading = false);
+      .finally(() => {
+        this.loading = false;
+        this.optionSelected = true;
+      });
   }
 
   displayFn(element: any): string {
