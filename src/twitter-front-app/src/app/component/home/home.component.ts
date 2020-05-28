@@ -1,4 +1,3 @@
-import { TwitterService } from './../../service/twitter.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from 'src/app/service/session.service';
@@ -16,7 +15,6 @@ export class HomeComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionService: SessionService,
-    private twitterService: TwitterService,
     private router: Router
   ) { }
 

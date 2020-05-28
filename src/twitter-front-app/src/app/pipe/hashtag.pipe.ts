@@ -8,7 +8,7 @@ export class HashtagPipe implements PipeTransform {
     transform(text: string): SafeHtml {
         if (text) {
             return this.sanitizer.bypassSecurityTrustHtml(
-                //le regex match les mots qui commence avec un '#' ou '@'
+                // Le regex match les mots qui commence avec un '#' ou '@'
                 text.replace(/#[^\s]+\s?|@[^\s]+\s?/g, (match) => `<span style="color: blue;">${match}</span>`)
             );
 

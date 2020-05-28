@@ -21,9 +21,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
         const secureRequest = request.clone({
             headers: new HttpHeaders({
-                'authorization': authorization,
-                'accesstoken': accessToken,
-                'accesstokensecret': accessTokenSecret
+                authorization,
+                accesstoken: accessToken,
+                accesstokensecret: accessTokenSecret
             })
         });
 
