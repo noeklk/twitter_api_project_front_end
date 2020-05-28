@@ -1,0 +1,14 @@
+<div class="keywords-container">
+    <button mat-raised-button (click)="GetKeywordsByIdUserAndKeyword(inputKeyword)">Montrer les keywords
+        spécifique</button>
+    <input type="text" [(ngModel)]="inputKeyword">
+
+    <ul *ngIf="specificKeywords">
+        <li *ngFor="let keyword of specificKeywords"> {{keyword.keyword}}</li>
+    </ul>
+
+    <div style="width: 700px;margin: auto;background-color: rgba(255, 255, 255, 0.6);"
+        *ngIf="labels.length > 0 && series.length > 0">
+        <app-bar-chart [labels]="labels" [series]="series"></app-bar-chart>
+    </div>
+</div>

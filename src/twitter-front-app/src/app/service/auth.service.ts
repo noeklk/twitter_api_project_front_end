@@ -38,10 +38,8 @@ export class AuthService {
         localStorage.setItem(this._userIdName, id);
     }
 
-    GetUserId(): Promise<string> {
-        return new Promise((resolve, reject) => {
-            resolve(localStorage.getItem(this._userIdName));
-        });
+    GetUserId(): string {
+        return localStorage.getItem(this._userIdName) ? localStorage.getItem(this._userIdName) : 'no_user';
     }
 
     CheckToken(): Promise<HttpResponse<MessageModel>> {
