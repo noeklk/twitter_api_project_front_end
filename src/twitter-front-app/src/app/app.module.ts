@@ -7,12 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module';
 import { LoginFormComponent } from './component/login-form/login-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './component/home/home.component';
 import { NavComponent } from './component/nav/nav.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { TweetComponent } from './template/tweet/tweet.component';
 import { HashtagPipe } from './pipe/hashtag.pipe';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { HashtagPipe } from './pipe/hashtag.pipe';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
