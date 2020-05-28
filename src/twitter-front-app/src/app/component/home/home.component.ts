@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
     await this.sessionService.CheckAccessTokens().then((res) => {
       if (res) {
         this.tweeterConnectStatus = 'Changer de compte';
+        this.GetUserTweets();
       } else {
         this.activatedRoute.queryParams.subscribe(params => {
           const oauthVerifier = params.oauth_verifier;
@@ -52,6 +53,7 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
 
       alert('Token saved');
+      this.GetUserTweets();
     }).catch(e => {
       const errorMessage = e.error.message ? e.error.message : 'Erreur de connexion avec l\'Api';
       console.log(errorMessage);
@@ -80,14 +82,9 @@ export class HomeComponent implements OnInit {
   }
 
   FilterTweets(tweets: TweetModel[]) {
-    this.retweets = [];
     this.tweets = [];
     for (const elem of tweets) {
-      if (elem.retweeted === true) {
-        this.retweets.push(elem);
-      } else {
-        this.tweets.push(elem);
-      }
+      this.tweets.push(elem);
     }
   }
 

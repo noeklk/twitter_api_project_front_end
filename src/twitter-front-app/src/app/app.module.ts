@@ -12,6 +12,8 @@ import { HomeComponent } from './component/home/home.component';
 import { NavComponent } from './component/nav/nav.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { TwitterTrendsComponent } from './component/twitter-trends/twitter-trends.component';
+import { TweetComponent } from './template/tweet/tweet.component';
+import { HashtagPipe } from './pipe/hashtag.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TwitterTrendsComponent } from './component/twitter-trends/twitter-trend
     HomeComponent,
     NavComponent,
     SignupFormComponent,
-    TwitterTrendsComponent
+    TwitterTrendsComponent,
+    TweetComponent,
+    HashtagPipe
   ],
   imports: [
     BrowserModule,
