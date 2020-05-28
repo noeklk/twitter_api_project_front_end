@@ -10,7 +10,7 @@ export class TwitterService {
 
     GetUserTweets(): Promise<HttpResponse<JSON>> {
         const res = this.http.get<JSON>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_tweets}`,
-            { headers: this.sessionService.GenerateAccessTokenHeader(), observe: 'response' }).toPromise();
+            { observe: 'response' }).toPromise();
         return res;
     }
 

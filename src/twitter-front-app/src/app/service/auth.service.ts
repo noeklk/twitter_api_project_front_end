@@ -22,12 +22,6 @@ export class AuthService {
 
     constructor(private myRoute: Router, private http: HttpClient) { }
 
-    GenerateHeader(): HttpHeaders {
-        return new HttpHeaders({
-            Authorization: this.GetToken()
-        });
-    }
-
     SetUserToken(token: string) {
         localStorage.setItem(this._tokenName, token);
     }
@@ -51,7 +45,7 @@ export class AuthService {
     }
 
     CheckToken(): Promise<HttpResponse<MessageModel>> {
-        const res = this.http.get<MessageModel>(this._tokenCheckUrl, { headers: this.GenerateHeader(), observe: 'response' }).toPromise();
+        const res = this.http.get<MessageModel>(this._tokenCheckUrl, { observe: 'response' }).toPromise();
         return res;
     }
 

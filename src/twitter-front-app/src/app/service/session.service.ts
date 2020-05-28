@@ -17,16 +17,6 @@ export class SessionService {
         return this.http.get<AccessTokenModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.session.save_access_tokens}?oauth_token=${oauthToken}&oauth_verifier=${oauthVerifier}`, { observe: 'response' }).toPromise();
     }
 
-    GenerateAccessTokenHeader(): HttpHeaders {
-        const accessToken = localStorage.getItem('oauthAccessToken');
-        const accessTokenSecret = localStorage.getItem('oauthAccessTokenSecret');
-
-        return new HttpHeaders({
-            AccessToken: accessToken,
-            AccessTokenSecret: accessTokenSecret
-        });
-    }
-
     CheckAccessTokens(): Promise<boolean> {
         return new Promise((resolve, reject) => {
             if (localStorage.getItem('oauthAccessToken') != null &&
