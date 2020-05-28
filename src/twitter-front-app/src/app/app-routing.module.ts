@@ -5,13 +5,20 @@ import { AuthGuard } from './guard/auth.guard';
 import { HomeComponent } from './component/home/home.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { TwitterTrendsComponent } from './component/twitter-trends/twitter-trends.component';
+import { TweetsComponent } from './component/tweets/tweets.component';
+import { KeywordsComponent } from './component/keywords/keywords.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'signup', component: SignupFormComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'twitter-trends', component: TwitterTrendsComponent, canActivate: [AuthGuard]},
+  {
+    path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
+      { path: '', component: TweetsComponent },
+      { path: 'keyword', component: KeywordsComponent }
+    ]
+  },
   { path: '**', redirectTo: 'home' }
 ];
 

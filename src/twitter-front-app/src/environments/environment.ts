@@ -25,6 +25,11 @@ export const environment = {
       get_user_tweets: 'twitter/get_user_tweets',
       get_trend_by_woeid: 'twitter/trends/',
       get_woeids: 'twitter/woeids',
+      invalidate_token: 'twitter/invalidate_token'
+    },
+    keyword: {
+      get_all_keywords_by_id_user: 'users',
+      get_keywords_by_id_user_and_keyword: 'users'
     }
   }
 };

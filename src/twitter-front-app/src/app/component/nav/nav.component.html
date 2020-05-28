@@ -6,7 +6,8 @@
                 <a mat-raised-button routerLink="/login">Connexion</a>
                 <a mat-raised-button routerLink="/signup">Inscription</a>
             </span>
-            <a mat-raised-button *ngIf="auth.isLoggedIn" (click)="auth.Logout()">Déconnexion</a> 
+            <a mat-raised-button *ngIf="auth.isLoggedIn" (click)="auth.Logout()">Déconnexion</a>
+            <a mat-raised-button *ngIf="auth.isLoggedIn" routerLink='/home/keyword'>Keywords</a>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>
