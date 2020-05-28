@@ -127,7 +127,7 @@ export class HomeComponent implements OnInit {
 
   setLabelsAndSeriesFromKeywords(keywords: KeywordModel[]) {
     for (const keyword of keywords) {
-      this.labels.push(keyword.created_at);
+      this.labels.push(new Date(keyword.created_at).toTimeString().split(' ')[0]);
       this.series.push(keyword.tweets_number);
     }
   }
