@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit {
         const oauthToken = params.oauth_token ? params.oauth_token : null;
         if (oauthToken && oauthVerifier) {
           this.SaveAccessToken(oauthToken, oauthVerifier);
-          this.tweeterConnectStatus = 'Changer de compte';
         }
       });
     }
@@ -50,6 +49,7 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
 
       alert('Connexion avec le compte twitter établie');
+      this.tweeterConnectStatus = 'Changer de compte';
       this.authService.isTwitterAuthenticated = true;
       this.router.navigate(['/home']);
     }).catch(e => {

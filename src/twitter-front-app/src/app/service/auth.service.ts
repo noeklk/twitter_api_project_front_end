@@ -84,6 +84,7 @@ export class AuthService {
         localStorage.removeItem('oauthAccessToken');
         localStorage.removeItem('oauthAccessTokenSecret');
         this.isLoggedIn = false;
+        this.isTwitterAuthenticated = false;
 
         // Invalidating the token
         this.twitterService.invalidateToken().subscribe(
