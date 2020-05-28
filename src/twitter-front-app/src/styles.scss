@@ -1,11 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { min-height: 100%; }
+html, body { 
+    min-height: 100%;
+    overflow: hidden;
+ }
 body 
 { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background: url('./assets/material-wp1.jpg') repeat-y center center;
+    background: url('./assets/material-wp1.jpg') no-repeat center center;
     // Quand on load les tweets la page stretch et la background image se casse
     // cette ligne adapte le background à la page
     background-size: 100% 100%;
