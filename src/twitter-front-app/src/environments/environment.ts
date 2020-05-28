@@ -23,7 +23,8 @@ export const environment = {
     },
     twitter: {
       get_user_tweets: 'twitter/get_user_tweets',
-      get_user_infos: 'twitter/get_user_infos'
+      get_user_infos: 'twitter/get_user_infos',
+      invalidate_token: 'twitter/invalidate_token'
     },
     keyword: {
       get_all_keywords_by_id_user: 'users',
