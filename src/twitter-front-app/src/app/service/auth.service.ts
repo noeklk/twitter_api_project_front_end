@@ -22,12 +22,6 @@ export class AuthService {
 
     constructor(private myRoute: Router, private http: HttpClient) { }
 
-    GenerateHeader(): HttpHeaders {
-        return new HttpHeaders({
-            Authorization: this.GetToken()
-        });
-    }
-
     SetUserToken(token: string) {
         localStorage.setItem(this._tokenName, token);
     }
@@ -44,14 +38,12 @@ export class AuthService {
         localStorage.setItem(this._userIdName, id);
     }
 
-    GetUserId(): Promise<string> {
-        return new Promise((resolve, reject) => {
-            resolve(localStorage.getItem(this._userIdName));
-        });
+    GetUserId(): string {
+        return localStorage.getItem(this._userIdName) ? localStorage.getItem(this._userIdName) : 'no_user';
     }
 
     CheckToken(): Promise<HttpResponse<MessageModel>> {
-        const res = this.http.get<MessageModel>(this._tokenCheckUrl, { headers: this.GenerateHeader(), observe: 'response' }).toPromise();
+        const res = this.http.get<MessageModel>(this._tokenCheckUrl, { observe: 'response' }).toPromise();
         return res;
     }
 

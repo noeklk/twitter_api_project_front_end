@@ -1,0 +1,15 @@
+.tweets-container {
+    margin: 30px auto 0 auto;
+    max-width: max-content;
+    padding: 0 50px;
+    max-height: 70vh;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+ol {
+    list-style: none;
+    li {
+        margin-bottom: 30px;
+    }
+}
