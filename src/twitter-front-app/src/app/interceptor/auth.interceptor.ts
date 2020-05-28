@@ -15,9 +15,9 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private sessionService: SessionService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const accessToken = localStorage.getItem('oauthAccessToken') ? localStorage.getItem('oauthAccessToken') : 'none';
-        const accessTokenSecret = localStorage.getItem('oauthAccessTokenSecret') ? localStorage.getItem('oauthAccessTokenSecret') : 'none';
-        const authorization = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : 'none';
+        const accessToken = localStorage.getItem('oauthAccessToken') ? localStorage.getItem('oauthAccessToken') : '';
+        const accessTokenSecret = localStorage.getItem('oauthAccessTokenSecret') ? localStorage.getItem('oauthAccessTokenSecret') : '';
+        const authorization = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : '';
 
         const secureRequest = request.clone({
             headers: new HttpHeaders({

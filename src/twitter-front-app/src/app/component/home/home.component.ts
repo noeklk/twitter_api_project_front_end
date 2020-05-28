@@ -1,6 +1,6 @@
 import { TwitterService } from './../../service/twitter.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from 'src/app/service/session.service';
 import { HttpResponse } from '@angular/common/http';
 import { AccessTokenModel } from 'src/app/model/access-tokens';
@@ -16,7 +16,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionService: SessionService,
-    private twitterService: TwitterService
+    private twitterService: TwitterService,
+    private router: Router
   ) { }
 
   tweets = new Array<TweetModel>();
@@ -26,34 +27,33 @@ export class HomeComponent implements OnInit {
 
   tweeterConnectStatus = 'Se connecter à Twitter';
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     // Vérifie si le token d'accès pour l'utilisateur a bien été généré pour l'utilisateur connecté
 
-    await this.sessionService.CheckAccessTokens().then((res) => {
-      if (res) {
-        this.tweeterConnectStatus = 'Changer de compte';
-        this.GetUserTweets();
-      } else {
-        this.activatedRoute.queryParams.subscribe(params => {
-          const oauthVerifier = params.oauth_verifier;
-          const oauthToken = params.oauth_token;
-          if (oauthToken && oauthVerifier) {
-            this.SaveAccessToken(oauthToken, oauthVerifier);
-            this.tweeterConnectStatus = 'Changer de compte';
-          }
-        });
-      }
-    });
+    if (this.sessionService.CheckAccessTokens()) {
+      this.tweeterConnectStatus = 'Changer de compte';
+      this.GetUserTweets();
+    } else {
+      this.activatedRoute.queryParams.subscribe(params => {
+        const oauthVerifier = params.oauth_verifier ? params.oauth_verifier : null;
+        const oauthToken = params.oauth_token ? params.oauth_token : null;
+        if (oauthToken && oauthVerifier) {
+          this.SaveAccessToken(oauthToken, oauthVerifier);
+          this.tweeterConnectStatus = 'Changer de compte';
+        }
+      });
+    }
   }
 
-  async SaveAccessToken(oauthToken: string, oauthVerifier: string) {
+  SaveAccessToken(oauthToken: string, oauthVerifier: string) {
 
-    await this.sessionService.SaveAccessToken(oauthToken, oauthVerifier).then((res: HttpResponse<AccessTokenModel>) => {
+    this.sessionService.SaveAccessToken(oauthToken, oauthVerifier).then((res: HttpResponse<AccessTokenModel>) => {
       localStorage.setItem('oauthAccessToken', res.body.oauthAccessToken);
       localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
 
-      alert('Token saved');
+      alert('Connexion avec le compte twitter établie');
       this.GetUserTweets();
+      this.router.navigate(['/home']);
     }).catch(e => {
       const errorMessage = e.error.message ? e.error.message : 'Erreur de connexion avec l\'Api';
       console.log(errorMessage);
@@ -66,15 +66,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  async GetUserTweets() {
-    if (!await this.sessionService.CheckAccessTokens()) {
-      alert('Vous n\'êtes connecté à aucun compte Twitter');
-      return;
-    }
-
-    await this.twitterService.GetUserTweets().then((res: HttpResponse<any>) => {
-      const tweets = res.body.data;
-      this.FilterTweets(tweets);
+  GetUserTweets() {
+    this.twitterService.GetUserTweets().then((res: HttpResponse<any>) => {
+      this.tweets = res.body.data;
       this.showfeed = true;
     }).catch(e => {
       throw e;

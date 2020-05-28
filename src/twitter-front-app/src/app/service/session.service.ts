@@ -17,14 +17,12 @@ export class SessionService {
         return this.http.get<AccessTokenModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.session.save_access_tokens}?oauth_token=${oauthToken}&oauth_verifier=${oauthVerifier}`, { observe: 'response' }).toPromise();
     }
 
-    CheckAccessTokens(): Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            if (localStorage.getItem('oauthAccessToken') != null &&
-                localStorage.getItem('oauthAccessTokenSecret') != null) {
-                resolve(true);
-            } else {
-                resolve(false);
-            }
-        });
+    CheckAccessTokens(): boolean {
+        if (localStorage.getItem('oauthAccessToken') != null &&
+            localStorage.getItem('oauthAccessTokenSecret') != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
