@@ -8,12 +8,14 @@
     </mat-autocomplete>
 </mat-form-field>
 
-<!-- Spinner -->
-<mat-spinner class="spinner" *ngIf="loading; else display" [diameter]="55"></mat-spinner>
-<ng-template #display>
-    <mat-card *ngFor="let element of trendKeywords">
-        <mat-card-title>{{ element.name }}</mat-card-title>
-        <mat-card-subtitle>{{ element.url }}</mat-card-subtitle>
-        <mat-card-content> {{ element.tweet_volume || 'N/A' }} tweets</mat-card-content>
-    </mat-card>
-</ng-template>
+<div class="container-content">
+    <!-- Spinner -->
+    <mat-spinner class="spinner" *ngIf="loading; else display" [diameter]="55"></mat-spinner>
+    <ng-template #display>
+        <mat-card *ngFor="let element of trendKeywords">
+            <mat-card-title>{{ element.name }}</mat-card-title>
+            <mat-card-subtitle>{{ element.url }}</mat-card-subtitle>
+            <mat-card-content> {{ element.tweet_volume || 'N/A' }} tweets</mat-card-content>
+        </mat-card>
+    </ng-template>
+</div>
