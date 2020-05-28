@@ -1,7 +1,12 @@
-<div class="tweets-container mat-elevation-z8" *ngIf="this.tweets">
-    <ol>
-        <li *ngFor="let tweet of tweets">
-            <app-tweet [tweet]="tweet"></app-tweet>
-        </li>
-    </ol>
-</div>
+<span class="spinner-container" *ngIf="loading; else display">
+    <mat-spinner class="spinner" [diameter]="100"></mat-spinner>
+</span>
+<ng-template #display>
+    <div class="tweets-container mat-elevation-z8" *ngIf="this.tweets">
+        <ol>
+            <li *ngFor="let tweet of tweets">
+                <app-tweet [tweet]="tweet"></app-tweet>
+            </li>
+        </ol>
+    </div>
+</ng-template>

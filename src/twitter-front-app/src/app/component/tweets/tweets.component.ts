@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TwitterService } from 'src/app/service/twitter.service';
-import { TweetModel } from 'src/app/model/tweet';
 
 @Component({
   selector: 'app-tweets',
@@ -10,6 +9,7 @@ import { TweetModel } from 'src/app/model/tweet';
 export class TweetsComponent implements OnInit {
 
   tweets: any;
+  loading = true;
 
   constructor(
     private twitterService: TwitterService
@@ -21,9 +21,12 @@ export class TweetsComponent implements OnInit {
 
   GetUserTweets() {
     this.twitterService.GetUserTweets().then((res) => {
+      this.loading = true;
       this.tweets = res.body.data;
     }).catch(e => {
       throw e;
+    }).finally(() => {
+      this.loading = false;
     });
   }
 

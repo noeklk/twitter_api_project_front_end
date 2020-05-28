@@ -7,14 +7,24 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 
-
-
 export class TwitterService {
     constructor(private http: HttpClient) { }
 
     GetUserTweets(): Promise<HttpResponse<TweetSetModel>> {
         const res = this.http.get<TweetSetModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_tweets}`,
             { observe: 'response' }).toPromise();
+        return res;
+    }
+
+    GetWoeids(): Promise<HttpResponse<any>> {
+        const res = this.http.get<any>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_woeids}`,
+        { observe: 'response' }).toPromise();
+        return res;
+    }
+
+    GetTrendsByWoeid(woeid: number): Promise<HttpResponse<any>> {
+        const res = this.http.get<any>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_trend_by_woeid}${woeid}`,
+        { observe: 'response' }).toPromise();
         return res;
     }
 
