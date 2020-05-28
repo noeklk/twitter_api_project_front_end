@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 export class TwitterService {
     constructor(private http: HttpClient) { }
 
+    public userInfos;
+
     GetUserTweets(): Promise<HttpResponse<TweetSetModel>> {
         const res = this.http.get<TweetSetModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_tweets}`,
             { observe: 'response' }).toPromise();

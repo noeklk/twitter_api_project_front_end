@@ -17,6 +17,7 @@ export class TweetsComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetUserTweets();
+    this.GetUserInfos();
   }
 
   GetUserTweets() {
@@ -27,6 +28,14 @@ export class TweetsComponent implements OnInit {
       throw e;
     }).finally(() => {
       this.loading = false;
+    });
+  }
+
+  GetUserInfos() {
+    this.twitterService.GetUserInfos().then((res) => {
+      this.twitterService.userInfos = res.body.data;
+    }).catch(e => {
+      throw e;
     });
   }
 
