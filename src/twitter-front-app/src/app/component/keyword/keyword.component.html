@@ -1,7 +1,6 @@
-<h1>{{ title }} </h1>
-
+<!-- 
 <div class="container">
-    <a *ngFor="let keyword of keywords" href="/keyword/{{ keyword.id }}" class="keyword">
+    <div *ngFor="let keyword of keywords" class="keyword">
         <div class="keyword-content">
             <div class="infos">
                 <p>ID#{{ keyword.id }}</p>
@@ -12,13 +11,14 @@
                     <button>Supprimer</button>
                 </div>
             </div>
-            <!-- {{ keyword.tweets_number }} -->
-            <!-- <p>{{ keyword.id_user }}</p> -->
-            <!-- <p>{{ keyword.created_at | date }}</p> -->
+           
             <div class="tweets_number">
                 <span class="number">{{ keyword.tweets_number }}</span>
                 <span class="text">tweets</span>
             </div>
         </div>
-    </a>
-</div>
+    </div>
+</div> -->
+
+
+<router-outlet></router-outlet>

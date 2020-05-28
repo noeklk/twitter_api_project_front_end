@@ -2,7 +2,7 @@
     <mat-toolbar-row>
         <div>
             <a mat-raised-button routerLink="/home">Accueil</a>
-            <a mat-raised-button routerLink="/keyword">Keyword</a>
+            <a mat-raised-button *ngIf="auth.isLoggedIn" routerLink="/keyword">Keyword</a>
             <span *ngIf=!auth.isLoggedIn>
                 <a mat-raised-button routerLink="/login">Connexion</a>
                 <a mat-raised-button routerLink="/signup">Inscription</a>

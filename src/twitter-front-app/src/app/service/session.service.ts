@@ -6,7 +6,7 @@ import { AccessTokenModel } from '../model/access-tokens';
     providedIn: 'root'
 })
 export class SessionService {
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,  private sessionservice : SessionService) { }
 
     GetRedirectUrl(): Promise<HttpResponse<any>> {
         return this.http.get<any>(`${environment.nodejs_api_host}${environment.nodejs_api_route.session.connect}`).toPromise();

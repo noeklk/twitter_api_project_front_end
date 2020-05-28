@@ -1,0 +1,19 @@
+<h1 class='center'>Keywords</h1>
+  <div class='container'>
+    <div class="row">
+    <div *ngFor='let keyword of keywords' class="col s6 m4">
+      <div class="card horizontal" (click)="selectKeyword(keyword)" pkmn-border-card>
+        <div class="card-image">
+          <img [src]="keyword.picture">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <!-- <p>{{ keyword.name }}</p>
+            <p><small>{{ keyword.created | date:"dd/MM/yyyy" }}</small></p> -->
+            <!-- <span *ngFor='let type of pokemon.types' class="{{ type | pokemonTypeColor }}">{{ type }}</span> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
