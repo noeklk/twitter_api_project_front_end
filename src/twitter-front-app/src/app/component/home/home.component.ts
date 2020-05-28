@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from 'src/app/service/session.service';
@@ -15,13 +16,12 @@ export class HomeComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private sessionService: SessionService,
-    private router: Router
+    public authService: AuthService,
+    private router: Router,
   ) { }
 
   tweets = new Array<TweetModel>();
   retweets = new Array<TweetModel>();
-
-  isAuthenticated = false;
 
   tweeterConnectStatus = 'Se connecter à Twitter';
 
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     // Vérifie si le token d'accès pour l'utilisateur a bien été généré pour l'utilisateur connecté
 
     if (this.sessionService.CheckAccessTokens()) {
-      this.isAuthenticated = true;
+      this.authService.isTwitterAuthenticated = true;
       this.tweeterConnectStatus = 'Changer de compte';
     } else {
       this.activatedRoute.queryParams.subscribe(params => {
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
 
       alert('Connexion avec le compte twitter établie');
-      this.isAuthenticated = true;
+      this.authService.isTwitterAuthenticated = true;
       this.router.navigate(['/home']);
     }).catch(e => {
       const errorMessage = e.error.message ? e.error.message : 'Erreur de connexion avec l\'Api';

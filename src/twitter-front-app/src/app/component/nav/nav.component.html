@@ -2,15 +2,15 @@
     <mat-toolbar-row>
         <div>
             <a mat-raised-button routerLink="/home">Accueil</a>
-            <span *ngIf=!auth.isLoggedIn>
+            <span *ngIf=!authService.isLoggedIn>
                 <a mat-raised-button routerLink="/login">Connexion</a>
                 <a mat-raised-button routerLink="/signup">Inscription</a>
             </span>
-            <ng-container *ngIf="auth.isLoggedIn">
-                <a mat-raised-button (click)="auth.Logout()">Déconnexion</a>
-                <a mat-raised-button routerLink='/home/keyword'>Keywords</a>
-                <a mat-raised-button routerLink="/twitter-trends">Tendances</a>
-            </ng-container>
+            <a mat-raised-button (click)="authService.Logout()" *ngIf="authService.isLoggedIn">Déconnexion</a>
+            <span *ngIf="authService.isTwitterAuthenticated">
+                <a mat-raised-button routerLink='/home/keyword'>Mots-clés</a>
+                <a mat-raised-button routerLink="/home/twitter-trends">Tendances</a>
+            </span>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>

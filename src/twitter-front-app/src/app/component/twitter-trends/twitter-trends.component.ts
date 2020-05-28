@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TwitterService } from 'src/app/service/twitter.service';
-import { HttpResponse } from '@angular/common/http';
-import { SessionService } from 'src/app/service/session.service';
-import { ActivatedRoute } from '@angular/router';
-import { AccessTokenModel } from 'src/app/model/access-tokens';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -22,26 +18,22 @@ export class TwitterTrendsComponent implements OnInit {
 
   public myControl = new FormControl();
   public filteredOptions: Observable<any[]>;
-  public trendKeywords: any[] = []; 
+  public trendKeywords: any[] = [];
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private sessionService: SessionService,
     private twitterService: TwitterService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
-    
-
     this.twitterService.GetWoeids().then(response => {
       // retirer tous les éléments qui ne sont pas des pays
       // note : placeType { code: 12, name: "Country" } and code 19 is worldwide
       // filtrer les propriétés et ne garder que le nom du pays et son woeid
       this.options = (response.body.data as any[])
         .filter(element => element.placeType.code === 19 || element.placeType.code === 12)
-        .map(element => ({ "country": element.name, "woeid": element.woeid }));
+        .map(element => ({ country: element.name, woeid: element.woeid }));
 
-        this.filteredOptions = this.myControl.valueChanges
+      this.filteredOptions = this.myControl.valueChanges
         .pipe(
           startWith(''),
           map(value => typeof value === 'string' ? value : value.country),
@@ -55,10 +47,10 @@ export class TwitterTrendsComponent implements OnInit {
     this.twitterService.GetTrendsByWoeid(state.option.value.woeid).then(response => {
       this.trendKeywords = response.body.data[0].trends;
     })
-    .catch(error => {
-      console.log(error);
-    })
-    .finally(() => this.loading = false);
+      .catch(error => {
+        console.log(error);
+      })
+      .finally(() => this.loading = false);
   }
 
   displayFn(element: any): string {

@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tweet',

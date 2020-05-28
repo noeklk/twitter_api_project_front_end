@@ -12,11 +12,11 @@ import { KeywordsComponent } from './component/keywords/keywords.component';
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'signup', component: SignupFormComponent },
-  { path: 'twitter-trends', component: TwitterTrendsComponent, canActivate: [AuthGuard]},
   {
     path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
       { path: '', component: TweetsComponent },
-      { path: 'keyword', component: KeywordsComponent }
+      { path: 'keyword', component: KeywordsComponent },
+      { path: 'twitter-trends', component: TwitterTrendsComponent }
     ]
   },
   { path: '**', redirectTo: 'home' }
