@@ -14,6 +14,7 @@ import { SignupFormComponent } from './component/signup-form/signup-form.compone
 import { TweetComponent } from './template/tweet/tweet.component';
 import { HashtagPipe } from './pipe/hashtag.pipe';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { TweetsComponent } from './component/tweets/tweets.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     NavComponent,
     SignupFormComponent,
     TweetComponent,
-    HashtagPipe
+    HashtagPipe,
+    TweetsComponent
   ],
   imports: [
     BrowserModule,

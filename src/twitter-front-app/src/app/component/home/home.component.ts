@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   tweets = new Array<TweetModel>();
   retweets = new Array<TweetModel>();
 
-  showfeed = false;
+  isAuthenticated = false;
 
   tweeterConnectStatus = 'Se connecter à Twitter';
 
@@ -31,8 +31,8 @@ export class HomeComponent implements OnInit {
     // Vérifie si le token d'accès pour l'utilisateur a bien été généré pour l'utilisateur connecté
 
     if (this.sessionService.CheckAccessTokens()) {
+      this.isAuthenticated = true;
       this.tweeterConnectStatus = 'Changer de compte';
-      this.GetUserTweets();
     } else {
       this.activatedRoute.queryParams.subscribe(params => {
         const oauthVerifier = params.oauth_verifier ? params.oauth_verifier : null;
@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('oauthAccessTokenSecret', res.body.oauthAccessTokenSecret);
 
       alert('Connexion avec le compte twitter établie');
-      this.GetUserTweets();
+      this.isAuthenticated = true;
       this.router.navigate(['/home']);
     }).catch(e => {
       const errorMessage = e.error.message ? e.error.message : 'Erreur de connexion avec l\'Api';
@@ -64,25 +64,5 @@ export class HomeComponent implements OnInit {
     this.sessionService.GetRedirectUrl().then((res: any) => {
       location.href = res.redirectUrl;
     });
-  }
-
-  GetUserTweets() {
-    this.twitterService.GetUserTweets().then((res: HttpResponse<any>) => {
-      this.tweets = res.body.data;
-      this.showfeed = true;
-    }).catch(e => {
-      throw e;
-    });
-  }
-
-  FilterTweets(tweets: TweetModel[]) {
-    this.tweets = [];
-    for (const elem of tweets) {
-      this.tweets.push(elem);
-    }
-  }
-
-  HideFeed() {
-    this.showfeed = false;
   }
 }
