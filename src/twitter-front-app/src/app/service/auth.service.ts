@@ -20,6 +20,7 @@ export class AuthService {
     private _userIdName = 'userId';
 
     public isLoggedIn = false;
+    public isTwitterAuthenticated = false;
 
     constructor(private myRoute: Router, private http: HttpClient, private twitterService: TwitterService) { }
 
@@ -84,9 +85,9 @@ export class AuthService {
         localStorage.removeItem('oauthAccessTokenSecret');
         this.isLoggedIn = false;
 
-        //invalidating the token
+        // Invalidating the token
         this.twitterService.invalidateToken().subscribe(
-            res => console.log("token invalidé"),
+            res => console.log('token invalidé'),
             err => console.log(err)
         );
 
