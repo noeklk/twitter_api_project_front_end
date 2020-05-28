@@ -6,6 +6,7 @@ import { HomeComponent } from './component/home/home.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { TwitterTrendsComponent } from './component/twitter-trends/twitter-trends.component';
 import { TweetsComponent } from './component/tweets/tweets.component';
+import { UserInfosComponent } from './component/user-infos/user-infos.component';
 import { KeywordsComponent } from './component/keywords/keywords.component';
 
 

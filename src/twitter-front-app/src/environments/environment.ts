@@ -23,6 +23,7 @@ export const environment = {
     },
     twitter: {
       get_user_tweets: 'twitter/get_user_tweets',
+      get_user_infos: 'twitter/get_user_infos',
       get_trend_by_woeid: 'twitter/trends/',
       get_woeids: 'twitter/woeids',
       invalidate_token: 'twitter/invalidate_token'

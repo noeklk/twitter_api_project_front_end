@@ -1,6 +1,7 @@
 mat-card {
-    margin: 10px 0;
+    margin: 10px 10px;
     display: relative;
+    max-height: max-content;
 }
 
 .container-content {
@@ -9,9 +10,10 @@ mat-card {
     flex-direction: column;
     overflow-y: scroll; 
     overflow-x: hidden;
+    width: 38.8rem;
     height: 80vh;
     position: relative;
-    margin-top: 40px;
+    margin: 2.5rem auto 0 auto;
 }
 
 .spinner {

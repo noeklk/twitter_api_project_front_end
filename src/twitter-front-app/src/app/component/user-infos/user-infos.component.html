@@ -1,0 +1,41 @@
+<div class="bloc_infos_user mat-elevation-z8" *ngIf="twitterService.userInfos">
+    <div class="banner_image">
+        <img *ngIf="twitterService.userInfos.profile_banner_url" src="{{twitterService.userInfos.profile_banner_url}}" alt="bannière de {{twitterService.userInfos.name}}">
+    </div>
+    <div class="content">
+        <div class="image">
+            <img src="{{twitterService.userInfos.profile_image_url_https | defaultUrlImgUser }}" alt="photo de {{twitterService.userInfos.name}}">
+        </div>
+        <div class="identite">
+            <div><span class="name">{{twitterService.userInfos.name}}</span> <span class="screen_name"> @{{twitterService.userInfos.screen_name}}</span></div>
+        </div>
+        <div class="description">
+            <p>{{twitterService.userInfos.description}}</p>
+        </div>
+        <div class="others_infos"> 
+            <div class="location">
+                <span class="icon">
+                    <img src="../../../assets/marker.svg" alt="location">
+                </span>
+                <span class="text">{{twitterService.userInfos.location}}</span>
+            </div>
+            <div class="created_at">
+                <span class="icon">
+                    <img src="../../../assets/calendar.svg" alt="calendar">
+                </span>
+                <span class="text">à rejoint twitter en {{twitterService.userInfos.created_at | date:'MM'| monthTranslateFrPipe }} {{twitterService.userInfos.created_at | date:'yyyy'}} </span>
+            </div>
+        </div>
+        <div class="follow_infos">
+            <div class="followers">
+                <span class="count">{{twitterService.userInfos.followers_count}} </span>
+                <span class="text">abonnés</span>
+            </div>
+            <div class="friends">
+                <span class="count">{{twitterService.userInfos.friends_count}} </span>
+                <span class="text">abonnements</span>
+            </div>
+        </div>
+    </div>
+</div>
+

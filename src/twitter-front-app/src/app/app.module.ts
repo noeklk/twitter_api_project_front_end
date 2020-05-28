@@ -19,6 +19,10 @@ import { TweetsComponent } from './component/tweets/tweets.component';
 import { KeywordsComponent } from './component/keywords/keywords.component';
 import { ChartistModule } from 'ng-chartist';
 import { BarChartComponent } from './template/bar-chart/bar-chart.component';
+import { UserInfosComponent } from './component/user-infos/user-infos.component';
+import { MonthTranslateFrPipe } from './component/user-infos/month-translate-pipe';
+import { DefaultUrlImgUserPipe } from './component/user-infos/default-url-img-user-pipe';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +37,10 @@ import { BarChartComponent } from './template/bar-chart/bar-chart.component';
     TweetsComponent,
     KeywordsComponent,
     BarChartComponent,
-    HashtagPipe
+    HashtagPipe,
+    UserInfosComponent,
+    MonthTranslateFrPipe,
+    DefaultUrlImgUserPipe
   ],
   imports: [
     BrowserModule,
@@ -43,7 +50,8 @@ import { BarChartComponent } from './template/bar-chart/bar-chart.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    ChartistModule
+    ChartistModule,
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
