@@ -22,7 +22,8 @@ export const environment = {
       save_access_tokens: 'sessions/save_access_tokens'
     },
     twitter: {
-      get_user_tweets: 'twitter/get_user_tweets'
+      get_user_tweets: 'twitter/get_user_tweets',
+      invalidate_token: 'twitter/invalidate_token'
     },
     keyword: {
       get_all_keywords_by_id_user: 'users',

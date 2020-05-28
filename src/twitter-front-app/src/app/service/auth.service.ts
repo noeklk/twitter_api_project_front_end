@@ -5,6 +5,7 @@ import { MessageModel } from '../model/message';
 import { environment } from 'src/environments/environment';
 import { UserDto } from '../dto/user';
 import { LoginResponseModel } from '../model/login-response';
+import { TwitterService } from './twitter.service';
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +21,7 @@ export class AuthService {
 
     public isLoggedIn = false;
 
-    constructor(private myRoute: Router, private http: HttpClient) { }
+    constructor(private myRoute: Router, private http: HttpClient, private twitterService: TwitterService) { }
 
     SetUserToken(token: string) {
         localStorage.setItem(this._tokenName, token);
@@ -82,6 +83,13 @@ export class AuthService {
         localStorage.removeItem('oauthAccessToken');
         localStorage.removeItem('oauthAccessTokenSecret');
         this.isLoggedIn = false;
+
+        //invalidating the token
+        this.twitterService.invalidateToken().subscribe(
+            res => console.log("token invalidé"),
+            err => console.log(err)
+        );
+
         console.log('Déconnecté!');
         this.myRoute.navigate(['login']);
     }
