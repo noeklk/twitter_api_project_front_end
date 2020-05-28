@@ -14,4 +14,15 @@ export class TwitterService {
         return res;
     }
 
+    GetWoeids(): Promise<HttpResponse<any>> {
+        const res = this.http.get<any>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_woeids}`,
+        { headers: this.sessionService.GenerateAccessTokenHeader(), observe: 'response' }).toPromise();
+        return res;
+    }
+
+    GetTrendsByWoeid(woeid: number): Promise<HttpResponse<any>> {
+        const res = this.http.get<any>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_trend_by_woeid}${woeid}`,
+        { headers: this.sessionService.GenerateAccessTokenHeader(), observe: 'response' }).toPromise();
+        return res;
+    }
 }

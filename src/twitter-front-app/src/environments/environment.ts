@@ -22,7 +22,9 @@ export const environment = {
       save_access_tokens: 'sessions/save_access_tokens'
     },
     twitter: {
-      get_user_tweets: 'twitter/get_user_tweets'
+      get_user_tweets: 'twitter/get_user_tweets',
+      get_trend_by_woeid: 'twitter/trends/',
+      get_woeids: 'twitter/woeids',
     }
   }
 };
