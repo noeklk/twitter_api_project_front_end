@@ -29,12 +29,11 @@ or
 `http://localhost:4200/`
 
 
-Here is a few requirements to use the application with this api
+Here is a few requirements to use the application with the api referenced up there
 
 -   You must run both the api and application on the same environment
     -   Both must be running independently with  `docker-compose up`
     -   Navigate to  `localhost:4200`  OR  `127.0.0.1:4200`
-
 
 ### Credits & Licence
 29/05/2020 - GPL3 Licence (Open Source)
