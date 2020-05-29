@@ -6,17 +6,18 @@
                 <h1>TwitterLytics</h1>
             </div>
             <div class="links">
-                <ng-container *ngIf="auth.isLoggedIn">
-                    <a routerLink='/home/keyword' routerLinkActive="underline-active">Keywords</a>
+                <ng-container *ngIf="authService.isTwitterAuthenticated">
+                    <a routerLink='/home/keyword' routerLinkActive="underline-active">Mots-clés</a>
+                    <a routerLink='/home/twitter-trends' routerLinkActive="underline-active">Tendances</a>
                 </ng-container>
             </div>
         </div>
         <div class="right">
-            <ng-container *ngIf="!auth.isLoggedIn">
+            <ng-container *ngIf="!authService.isLoggedIn">
                 <a routerLink="/login" routerLinkActive="underline-active">Connexion</a>
                 <a routerLink="/signup" routerLinkActive="underline-active">Inscription</a>
             </ng-container>
-            <a class="right" style="cursor: pointer;" (click)="auth.Logout()" *ngIf="auth.isLoggedIn">
+            <a class="right" style="cursor: pointer;" (click)="authService.Logout()" *ngIf="authService.isLoggedIn">
                 <mat-icon class="disconnect-icon"></mat-icon>
                 Déconnexion
             </a>

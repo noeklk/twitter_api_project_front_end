@@ -21,6 +21,7 @@ export class AuthService {
     private _userIdName = 'userId';
 
     public isLoggedIn = false;
+    public isTwitterAuthenticated = false;
 
     constructor(
         private myRoute: Router,
@@ -95,6 +96,7 @@ export class AuthService {
         localStorage.removeItem('oauthAccessToken');
         localStorage.removeItem('oauthAccessTokenSecret');
         this.isLoggedIn = false;
+        this.isTwitterAuthenticated = false;
 
         console.log('Déconnecté!');
         this.myRoute.navigate(['login']);

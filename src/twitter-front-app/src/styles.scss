@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { min-height: 100%; }
+html, body { 
+    min-height: 100%;
+    overflow: hidden;
+ }
 body 
 { 
     margin: 0; 

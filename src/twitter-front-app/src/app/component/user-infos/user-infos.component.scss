@@ -1,0 +1,96 @@
+.bloc_infos_user{
+    width: 45rem;
+    position: relative;
+    margin: 60px auto auto auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: #fefefe;
+
+    .banner_image {
+        width: 100%;
+        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+    }
+
+    .content {
+        height: auto;
+        position: relative;
+        padding: 20px;
+        padding-top: 120px;
+        
+
+        .image {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            border: 5px solid #ffffff;
+            padding: 0;
+            height: 200px;
+            width: 200px;
+            img {
+                border-radius: 50%;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        > div {
+            text-align: center;
+        }
+        .identite {
+            display: flex;
+            flex-direction: column;
+            .name {
+                font-size: 19px;
+                font-weight: 700;
+            }
+            .screen_name {
+                font-size: 15px;
+                font-weight: 400;
+                color: #829AAD;
+            }
+        }
+        .others_infos {
+            .icon img{
+                width: 18px ;
+                height: 18px ;
+            }
+            .location , .created_at  {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .text {
+                    margin-left: 10px;
+                    color: #829AAD;
+                }
+            
+            }
+        }
+        .follow_infos {
+            display: flex;
+            justify-content: center;
+            .followers , .friends{
+                
+                margin: 0 5px;
+                .count {
+                    font-weight: 700;
+                    font-size: 18px;
+                }
+                .text {
+                    font-size: 15px;
+                    color: #829AAD;
+                    margin-left: 2px;
+                }
+            }
+        }
+    }
+}
+
+

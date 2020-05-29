@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './component/home/home.component';
 import { NavComponent } from './component/nav/nav.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
+import { TwitterTrendsComponent } from './component/twitter-trends/twitter-trends.component';
 import { TweetComponent } from './template/tweet/tweet.component';
 import { HashtagPipe } from './pipe/hashtag.pipe';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
@@ -18,6 +19,10 @@ import { TweetsComponent } from './component/tweets/tweets.component';
 import { KeywordsComponent } from './component/keywords/keywords.component';
 import { ChartistModule } from 'ng-chartist';
 import { BarChartComponent } from './template/bar-chart/bar-chart.component';
+import { UserInfosComponent } from './component/user-infos/user-infos.component';
+import { MonthTranslateFrPipe } from './component/user-infos/month-translate-pipe';
+import { DefaultUrlImgUserPipe } from './component/user-infos/default-url-img-user-pipe';
+
 
 @NgModule({
   declarations: [
@@ -26,12 +31,16 @@ import { BarChartComponent } from './template/bar-chart/bar-chart.component';
     HomeComponent,
     NavComponent,
     SignupFormComponent,
+    TwitterTrendsComponent,
     TweetComponent,
     HashtagPipe,
     TweetsComponent,
     KeywordsComponent,
     BarChartComponent,
-    HashtagPipe
+    HashtagPipe,
+    UserInfosComponent,
+    MonthTranslateFrPipe,
+    DefaultUrlImgUserPipe
   ],
   imports: [
     BrowserModule,
@@ -41,7 +50,8 @@ import { BarChartComponent } from './template/bar-chart/bar-chart.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    ChartistModule
+    ChartistModule,
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

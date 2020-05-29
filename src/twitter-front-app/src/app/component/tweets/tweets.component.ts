@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TwitterService } from 'src/app/service/twitter.service';
-import { TweetModel } from 'src/app/model/tweet';
-import { SessionService } from 'src/app/service/session.service';
 
 @Component({
   selector: 'app-tweets',
@@ -11,21 +9,31 @@ import { SessionService } from 'src/app/service/session.service';
 export class TweetsComponent implements OnInit {
 
   tweets: any;
+  loading = true;
 
   constructor(
-    private twitterService: TwitterService,
-    private sessionService: SessionService
+    private twitterService: TwitterService
   ) { }
 
   ngOnInit(): void {
-    if (this.sessionService.CheckAccessTokens()) {
-      this.GetUserTweets();
-    }
+    this.GetUserTweets();
+    this.GetUserInfos();
   }
 
   GetUserTweets() {
     this.twitterService.GetUserTweets().then((res) => {
+      this.loading = true;
       this.tweets = res.body.data;
+    }).catch(e => {
+      throw e;
+    }).finally(() => {
+      this.loading = false;
+    });
+  }
+
+  GetUserInfos() {
+    this.twitterService.GetUserInfos().then((res) => {
+      this.twitterService.userInfos = res.body.data;
     }).catch(e => {
       throw e;
     });
