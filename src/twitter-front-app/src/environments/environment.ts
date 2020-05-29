@@ -26,7 +26,8 @@ export const environment = {
       get_user_infos: 'twitter/get_user_infos',
       get_trend_by_woeid: 'twitter/trends/',
       get_woeids: 'twitter/woeids',
-      invalidate_token: 'twitter/invalidate_token'
+      invalidate_token: 'twitter/invalidate_token',
+      status_update: 'twitter/update_status'
     },
     keyword: {
       get_all_keywords_by_id_user: 'users',

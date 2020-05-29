@@ -7,8 +7,12 @@
             </div>
             <div class="links">
                 <ng-container *ngIf="authService.isTwitterAuthenticated">
-                    <button mat-raised-button routerLink='/home/keyword' routerLinkActive="underline-active">Mots-clés</button>
-                    <button mat-raised-button routerLink='/home/twitter-trends' routerLinkActive="underline-active">Tendances</button>
+                    <button mat-raised-button routerLink='/home/keyword'
+                        routerLinkActive="underline-active">Mots-clés</button>
+                    <button mat-raised-button routerLink='/home/twitter-trends'
+                        routerLinkActive="underline-active">Tendances</button>
+                    <button mat-raised-button routerLink='/home/update-status'
+                        routerLinkActive="underline-active">Poster</button>
                 </ng-container>
             </div>
         </div>

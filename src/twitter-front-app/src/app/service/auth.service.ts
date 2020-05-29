@@ -84,7 +84,7 @@ export class AuthService {
     }
 
     async Logout() {
-        //invalidating the token only if he is logged
+        // invalidating the token only if he is logged
         if (this.sessionService.CheckAccessTokens()) {
             await this.twitterService.invalidateToken().subscribe(
                 res => console.log(res),

@@ -42,4 +42,8 @@ export class TwitterService {
         return this.http.post(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.invalidate_token}`, null);
     }
 
+    updateStatus(status: string): Observable<any> {
+        return this.http.post(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.status_update}`, { status });
+    }
+
 }

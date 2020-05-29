@@ -8,6 +8,7 @@ import { TwitterTrendsComponent } from './component/twitter-trends/twitter-trend
 import { TweetsComponent } from './component/tweets/tweets.component';
 import { UserInfosComponent } from './component/user-infos/user-infos.component';
 import { KeywordsComponent } from './component/keywords/keywords.component';
+import { UpdateStatusComponent } from './component/update-status/update-status.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
     path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
       { path: '', component: TweetsComponent },
       { path: 'keyword', component: KeywordsComponent },
-      { path: 'twitter-trends', component: TwitterTrendsComponent }
+      { path: 'twitter-trends', component: TwitterTrendsComponent },
+      { path: 'update-status', component: UpdateStatusComponent }
     ]
   },
   { path: '**', redirectTo: 'home' }
