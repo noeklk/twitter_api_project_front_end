@@ -37,10 +37,15 @@ export class UpdateStatusComponent implements OnInit {
       return;
     }
     this.twitterService.updateStatus(status).pipe(first()).subscribe(res => {
-      console.log("status updated succesfully");
+      this._snackBar.open("status updated succesfully", "Ok", {
+        duration: 3000
+      });
       this.submitted = false;
     }, err => {
       this.submitted = false;
+      this._snackBar.open("status update FAILED !!! Sorry", "Ok", {
+        duration: 3000
+      });
       console.log(err);
     });
 
