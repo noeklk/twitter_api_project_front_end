@@ -1,13 +1,15 @@
 mat-card {
     margin: 10px 10px;
     max-height: max-content;
+    max-width: 100%;
 }
 
 .container-content {
     overflow-y: auto;
+    overflow-x: hidden;
     justify-content: center;
     flex-direction: column;
-    width: 38.8rem;
+    width: 55rem;
     height: 60vh;
     margin: 2.5rem auto 0 auto;
 }
