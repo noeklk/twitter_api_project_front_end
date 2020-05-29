@@ -11,9 +11,10 @@
             <textarea formControlName="status" rows="8" matInput placeholder="Des nouvelles ?"></textarea>
         </mat-form-field>
         <div class="footer">
-            <button *ngIf="!submitted" mat-raised-button color="primary">Tweet</button>
-            <mat-spinner *ngIf="submitted" [diameter]="55"></mat-spinner>
+            <mat-spinner *ngIf="loading; else tweet" class="spinner"  [diameter]="45"></mat-spinner>
+            <ng-template #tweet>
+                <button mat-raised-button color="primary" [disabled]="!statusForm.valid">Tweet</button>      
+            </ng-template>
         </div>
     </form>
-
 </div>

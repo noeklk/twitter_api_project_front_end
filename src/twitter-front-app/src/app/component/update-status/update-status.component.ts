@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class UpdateStatusComponent implements OnInit {
 
   statusForm: FormGroup;
-  submitted = false;
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -19,36 +19,26 @@ export class UpdateStatusComponent implements OnInit {
     private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-
     this.statusForm = this.fb.group({
-      status: ['', Validators.required]
+      status: ['', [Validators.required, Validators.maxLength(280)]]
     });
-
   }
 
   updateStatus() {
-    this.submitted = true;
+    this.loading = true;
     const status = this.statusForm.value.status;
-    if (!status) {
-      this.submitted = false;
-      this._snackBar.open("Votre statut ne peut pas etre vide", "Ok", {
-        duration: 3000
-      });
-      return;
-    }
+
     this.twitterService.updateStatus(status).pipe(first()).subscribe(res => {
-      this._snackBar.open("status updated succesfully", "Ok", {
+      this._snackBar.open('Statut mis à jour avec succès', 'Ok', {
         duration: 3000
       });
-      this.submitted = false;
     }, err => {
-      this.submitted = false;
-      this._snackBar.open("status update FAILED !!! Sorry", "Ok", {
+      this._snackBar.open('Echec de la mise à jour de votre statut', 'Ok', {
         duration: 3000
       });
       console.log(err);
+    }, () => {
+      this.loading = false;
     });
-
   }
-
 }

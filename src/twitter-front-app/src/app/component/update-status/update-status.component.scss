@@ -5,6 +5,7 @@
     width: 50%;
     margin: 30px auto 0 auto;
     border-radius: 5px;
+    height: 20rem;
 
     .header {
         display: flex;
@@ -44,6 +45,9 @@
                 height: 41px;
                 width: 85px;
                 border-radius: 20px;
+            }
+            .spinner {
+                margin-right: 1.5rem;
             }
         }
     }
