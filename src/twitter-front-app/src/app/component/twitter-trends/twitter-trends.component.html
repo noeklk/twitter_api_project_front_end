@@ -1,15 +1,17 @@
-<mat-form-field class="container-select">
-    <mat-label>Pays</mat-label>
-    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onOptionSelected($event)">
-    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{ option.country }}
-    </mat-option>
-    
-    </mat-autocomplete>
-</mat-form-field>
+<div class="" style="width: 30%;margin: auto;display: flex;align-items: center;">
+    <mat-form-field class="container-select">
+        <mat-label>Pays</mat-label>
+        <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onOptionSelected($event)">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{ option.country }}
+            </mat-option>
 
-<div class="container-content" *ngIf="optionSelected" >
+        </mat-autocomplete>
+    </mat-form-field>
+</div>
+
+<div class="container-content" *ngIf="optionSelected">
     <!-- Spinner -->
     <mat-spinner class="spinner" *ngIf="loading; else display" [diameter]="55"></mat-spinner>
     <ng-template #display>
