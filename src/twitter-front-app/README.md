@@ -9,21 +9,21 @@
 This application allows :
 
 - Users can signup and login in the application
-- Users can login in the application with his account Twitter
-- Users can see the tweets trends for each country
+- Users can login in the application with his Twitter account
+- Users can see the tweets trends from each countries
 - Datavizualisation of the setup keyword to display the differences with time.
 
 
 ### Instructions
 
-1.  You can either clone the project or download the latest release here :  `https://github.com/noeklk/twitter_api_project_front_end.git`
+1.  You can either clone the project or download the latest release here :  [twitter_api_project_front_end](https://github.com/noeklk/twitter_api_project_front_end.git)
 2.  Install docker & docker-compose
 3.  Position yourself at the root of the project  `cd twitter_api_project_front_end`
 
 ### Languages used :
 * Javascript (Angular)
 
-### URL API : 
+### Base URL to API : 
 `http://127.0.0.1:4200/home`
 
 
