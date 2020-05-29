@@ -1,11 +1,12 @@
 .tweets-container {
     margin: 0px auto 0 auto;
-    width: 38.8rem;
+    width: min-content;
     padding: 0 50px;
-    height: 40vh;
+    height: 70vh;
     overflow-y: scroll;
     background-color: rgba(0, 0, 0, 0.5);
     border-bottom-left-radius: 15px;
+    margin-bottom: 10px;
 }
 ol {
     list-style: none;
