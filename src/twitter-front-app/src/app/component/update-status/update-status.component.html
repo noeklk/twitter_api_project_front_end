@@ -12,7 +12,7 @@
         </mat-form-field>
         <div class="footer">
             <button *ngIf="!submitted" mat-raised-button color="primary">Tweet</button>
-            <mat-spinner *ngIf="submitted"></mat-spinner>
+            <mat-spinner *ngIf="submitted" [diameter]="55"></mat-spinner>
         </div>
     </form>
 

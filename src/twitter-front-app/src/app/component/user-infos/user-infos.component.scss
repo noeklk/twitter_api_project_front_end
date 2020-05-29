@@ -16,7 +16,7 @@
             .image_identite {
                 display: flex;
                 align-items: center;
-                justify-content: start;
+                justify-content: flex-start;
                 margin-bottom: 5px;
 
                 .image {
@@ -31,7 +31,7 @@
                 .identite {
                     display: flex;
                     flex-direction: column;
-                    justify-content: start;
+                    justify-content: flex-start;
                     text-align: start;
 
                     .name {
