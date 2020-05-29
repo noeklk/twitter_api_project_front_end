@@ -23,8 +23,10 @@ This application allows :
 ### Languages used :
 * Javascript (Angular)
 
-### Base URL to API : 
-`http://127.0.0.1:4200/home`
+### Base URL to application : 
+`http://127.0.0.1:4200/`
+or
+`http://localhost:4200/`
 
 
 Here is a few requirements to use the application with this api
