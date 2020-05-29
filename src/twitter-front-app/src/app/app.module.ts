@@ -22,6 +22,7 @@ import { BarChartComponent } from './template/bar-chart/bar-chart.component';
 import { UserInfosComponent } from './component/user-infos/user-infos.component';
 import { MonthTranslateFrPipe } from './component/user-infos/month-translate-pipe';
 import { DefaultUrlImgUserPipe } from './component/user-infos/default-url-img-user-pipe';
+import { UpdateStatusComponent } from './component/update-status/update-status.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { DefaultUrlImgUserPipe } from './component/user-infos/default-url-img-us
     HashtagPipe,
     UserInfosComponent,
     MonthTranslateFrPipe,
-    DefaultUrlImgUserPipe
+    DefaultUrlImgUserPipe,
+    UpdateStatusComponent
   ],
   imports: [
     BrowserModule,
