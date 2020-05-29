@@ -35,8 +35,12 @@ mat-toolbar {
             .links {
                 display: flex;
                 flex-direction: row;
+                
                 justify-content: space-evenly;
                 align-items: center;
+                button {
+                    margin: 0 0.3rem;
+                }
             }
         }
 

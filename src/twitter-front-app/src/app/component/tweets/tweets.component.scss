@@ -1,17 +1,24 @@
 .tweets-container {
     margin: 0px auto 0 auto;
-    width: min-content;
-    padding: 0 50px;
+    width: 100%;
+    
     height: 70vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     background-color: rgba(0, 0, 0, 0.5);
     border-bottom-left-radius: 15px;
-    margin-bottom: 10px;
 }
 ol {
+    padding: 0 20px;
+    margin: 10px auto;
     list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     li {
-        margin-bottom: 30px;
+        width: 100%;
+        margin: 0 auto 20px auto;
     }
 }
 
@@ -21,4 +28,10 @@ ol {
     transform: translateY(-40%);
     left: 50%;
     transform: translateX(-50%);
+}
+
+.components-container {
+    width: 40rem;
+    margin: auto; 
+    margin: -1rem auto auto auto;
 }
