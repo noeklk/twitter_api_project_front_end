@@ -1,9 +1,10 @@
 import { TweetSetModel } from './../model/tweet';
-import { UserInfosSetModel } from './../model/user-Infos';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { UserInfosSetModel } from '../model/user-infos';
+
 @Injectable({
     providedIn: 'root'
 })
