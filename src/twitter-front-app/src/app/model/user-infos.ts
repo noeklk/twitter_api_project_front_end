@@ -3,10 +3,11 @@ export interface UserInfosModel {
     created_at: Date;
     text: string;
     retweeted: boolean;
-}
-
-export interface UserInfosSetModel {
-    data: {
-        [tweets: number]: { tweet: UserInfosModel }
-    };
+    friends_count: number;
+    followers_count: number;
+    location: string;
+    description: string;
+    screen_name: string;
+    name: string;
+    profile_image_url_https: string;
 }

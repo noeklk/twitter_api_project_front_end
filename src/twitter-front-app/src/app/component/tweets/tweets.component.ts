@@ -15,25 +15,24 @@ export class TweetsComponent implements OnInit {
     private twitterService: TwitterService
   ) { }
 
-  ngOnInit(): void {
-    this.GetUserTweets();
-    this.GetUserInfos();
+  async ngOnInit(): Promise<void> {
+    this.loading = true;
+    await this.GetUserTweets();
+    await this.GetUserInfos();
+    this.loading = false;
   }
 
-  GetUserTweets() {
-    this.twitterService.GetUserTweets().then((res) => {
-      this.loading = true;
-      this.tweets = res.body.data;
+  async GetUserTweets() {
+    await this.twitterService.GetUserTweets().then((res) => {
+      this.tweets = res.body;
     }).catch(e => {
       throw e;
-    }).finally(() => {
-      this.loading = false;
     });
   }
 
-  GetUserInfos() {
-    this.twitterService.GetUserInfos().then((res) => {
-      this.twitterService.userInfos = res.body.data;
+  async GetUserInfos() {
+    await this.twitterService.GetUserInfos().then((res) => {
+      this.twitterService.userInfos = res.body;
     }).catch(e => {
       throw e;
     });

@@ -27,10 +27,11 @@ export class TwitterTrendsComponent implements OnInit {
 
   ngOnInit(): void {
     this.twitterService.GetWoeids().then(response => {
+      console.log(response);
       // retirer tous les éléments qui ne sont pas des pays
       // note : placeType { code: 12, name: "Country" } and code 19 is worldwide
       // filtrer les propriétés et ne garder que le nom du pays et son woeid
-      this.options = (response.body.data as any[])
+      this.options = (response.body as any[])
         .filter(element => element.placeType.code === 19 || element.placeType.code === 12)
         .map(element => ({ country: element.name, woeid: element.woeid }));
 
@@ -46,7 +47,7 @@ export class TwitterTrendsComponent implements OnInit {
   onOptionSelected(state: MatAutocompleteSelectedEvent): void {
     this.loading = true;
     this.twitterService.GetTrendsByWoeid(state.option.value.woeid).then(response => {
-      this.trendKeywords = response.body.data[0].trends;
+      this.trendKeywords = response.body[0].trends;
     })
       .catch(error => {
         console.log(error);

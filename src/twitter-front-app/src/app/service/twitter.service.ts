@@ -1,9 +1,9 @@
-import { TweetSetModel } from './../model/tweet';
+import { TweetModel } from 'src/app/model/tweet';
+import { UserInfosModel } from './../model/user-infos';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { UserInfosSetModel } from '../model/user-infos';
 
 @Injectable({
     providedIn: 'root'
@@ -12,16 +12,16 @@ import { UserInfosSetModel } from '../model/user-infos';
 export class TwitterService {
     constructor(private http: HttpClient) { }
 
-    public userInfos;
+    public userInfos: UserInfosModel;
 
-    GetUserTweets(): Promise<HttpResponse<TweetSetModel>> {
-        const res = this.http.get<TweetSetModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_tweets}`,
+    GetUserTweets(): Promise<HttpResponse<TweetModel>> {
+        const res = this.http.get<TweetModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_tweets}`,
             { observe: 'response' }).toPromise();
         return res;
     }
 
-    GetUserInfos(): Promise<HttpResponse<UserInfosSetModel>> {
-        const res = this.http.get<UserInfosSetModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_infos}`,
+    GetUserInfos(): Promise<HttpResponse<UserInfosModel>> {
+        const res = this.http.get<UserInfosModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_infos}`,
             { observe: 'response' }).toPromise();
         return res;
     }

@@ -4,9 +4,3 @@ export interface TweetModel {
     text: string;
     retweeted: boolean;
 }
-
-export interface TweetSetModel {
-    data: {
-        [tweets: number]: { tweet: TweetModel }
-    };
-}
