@@ -29,6 +29,7 @@ export class TweetsComponent implements OnInit, AfterViewInit {
   async GetUserInfos() {
     await this.twitterService.GetUserInfos().then((res) => {
       this.user = res.body;
+      this.twitterService.userInfos = res.body;
     }).catch(e => {
       throw e;
     });
