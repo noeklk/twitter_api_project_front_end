@@ -14,12 +14,6 @@ export class TwitterService {
 
     public userInfos: UserInfosModel;
 
-    GetUserTweets(): Promise<HttpResponse<TweetModel>> {
-        const res = this.http.get<TweetModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_tweets}`,
-            { observe: 'response' }).toPromise();
-        return res;
-    }
-
     GetUserInfos(): Promise<HttpResponse<UserInfosModel>> {
         const res = this.http.get<UserInfosModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_infos}`,
             { observe: 'response' }).toPromise();

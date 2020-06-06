@@ -8,7 +8,6 @@ import { TwitterService } from 'src/app/service/twitter.service';
 })
 export class TweetsComponent implements OnInit, AfterViewInit {
 
-  loading = true;
   user;
 
   constructor(
@@ -21,9 +20,7 @@ export class TweetsComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.loading = true;
     await this.GetUserInfos();
-    this.loading = false;
   }
 
   async GetUserInfos() {
