@@ -1,16 +1,3 @@
-<span class="spinner-container" *ngIf="loading; else display">
-    <mat-spinner class="spinner" [diameter]="100"></mat-spinner>
-</span>
-<ng-template #display>
-    <div class="components-container">
-        <app-user-infos></app-user-infos>
-        <div class="tweets-container mat-elevation-z8" *ngIf="this.tweets">
-            <ol>
-                <li *ngFor="let tweet of tweets">
-                    <app-tweet [tweet]="tweet"></app-tweet>
-                    
-                </li>
-            </ol>
-        </div>
-    </div>
-</ng-template>
+<div class="components-container">
+  <a class="twitter-timeline" href="https://twitter.com/{{user.screen_name}}"> </a>
+</div>

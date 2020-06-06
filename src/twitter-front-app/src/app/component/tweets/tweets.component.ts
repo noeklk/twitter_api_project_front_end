@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TwitterService } from 'src/app/service/twitter.service';
 
 @Component({
@@ -6,33 +6,29 @@ import { TwitterService } from 'src/app/service/twitter.service';
   templateUrl: './tweets.component.html',
   styleUrls: ['./tweets.component.scss']
 })
-export class TweetsComponent implements OnInit {
+export class TweetsComponent implements OnInit, AfterViewInit {
 
-  tweets: any;
   loading = true;
+  user;
 
   constructor(
     private twitterService: TwitterService
   ) { }
 
+  ngAfterViewInit(): void {
+    //@ts-ignore
+    twttr.widgets.load();
+  }
+
   async ngOnInit(): Promise<void> {
     this.loading = true;
-    await this.GetUserTweets();
     await this.GetUserInfos();
     this.loading = false;
   }
 
-  async GetUserTweets() {
-    await this.twitterService.GetUserTweets().then((res) => {
-      this.tweets = res.body;
-    }).catch(e => {
-      throw e;
-    });
-  }
-
   async GetUserInfos() {
     await this.twitterService.GetUserInfos().then((res) => {
-      this.twitterService.userInfos = res.body;
+      this.user = res.body;
     }).catch(e => {
       throw e;
     });
