@@ -1,3 +1,3 @@
-<div class="components-container">
-  <a class="twitter-timeline" href="https://twitter.com/{{user.screen_name}}"> </a>
+<div id="components-container" *ngIf="twitterService.userInfos">
+  <a class="twitter-timeline" href="https://twitter.com/{{twitterService.userInfos.screen_name}}"></a>
 </div>

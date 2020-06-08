@@ -1,3 +1,4 @@
+import { UserInfosModel } from './../../model/user-infos';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TwitterService } from 'src/app/service/twitter.service';
 
@@ -6,30 +7,32 @@ import { TwitterService } from 'src/app/service/twitter.service';
   templateUrl: './tweets.component.html',
   styleUrls: ['./tweets.component.scss']
 })
-export class TweetsComponent implements OnInit, AfterViewInit {
-
-  user;
+export class TweetsComponent implements OnInit {
 
   constructor(
-    private twitterService: TwitterService
+    public twitterService: TwitterService
   ) { }
 
-  ngAfterViewInit(): void {
-    //@ts-ignore
-    twttr.widgets.load();
-  }
-
   async ngOnInit(): Promise<void> {
-    await this.GetUserInfos();
+    this.twitterService.userInfos = await this.GetUserInfos();
+
+    setTimeout(res => {
+      // @ts-ignore
+      twttr.widgets.load(
+        document.getElementById('components-container')
+      );
+    }, 0);
   }
 
-  async GetUserInfos() {
+  async GetUserInfos(): Promise<UserInfosModel> {
+    let response;
     await this.twitterService.GetUserInfos().then((res) => {
-      this.user = res.body;
-      this.twitterService.userInfos = res.body;
+      response = res.body;
     }).catch(e => {
       throw e;
     });
+
+    return response;
   }
 
 }

@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class TwitterService {
     constructor(private http: HttpClient) { }
 
-    public userInfos: UserInfosModel;
+    public userInfos: any;
 
     GetUserInfos(): Promise<HttpResponse<UserInfosModel>> {
         const res = this.http.get<UserInfosModel>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_user_infos}`,
