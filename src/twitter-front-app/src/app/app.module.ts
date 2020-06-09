@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,7 +11,6 @@ import { HomeComponent } from './component/home/home.component';
 import { NavComponent } from './component/nav/nav.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { TwitterTrendsComponent } from './component/twitter-trends/twitter-trends.component';
-import { TweetComponent } from './template/tweet/tweet.component';
 import { HashtagPipe } from './pipe/hashtag.pipe';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { TweetsComponent } from './component/tweets/tweets.component';
@@ -33,7 +31,6 @@ import { UpdateStatusComponent } from './component/update-status/update-status.c
     NavComponent,
     SignupFormComponent,
     TwitterTrendsComponent,
-    TweetComponent,
     HashtagPipe,
     TweetsComponent,
     KeywordsComponent,

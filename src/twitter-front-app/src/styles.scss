@@ -13,3 +13,23 @@ body {
     // cette ligne adapte le background à la page
     background-size: 100% 100%;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  //border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(192, 96, 52);
+  border-radius: 0px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(192, 96, 52);
+}
