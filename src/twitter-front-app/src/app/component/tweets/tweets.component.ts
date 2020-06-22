@@ -25,9 +25,8 @@ export class TweetsComponent implements OnInit {
   }
 
   async GetUserInfos(): Promise<UserInfosModel> {
-    let response;
-    await this.twitterService.GetUserInfos().then((res) => {
-      response = res.body;
+    const response = await this.twitterService.GetUserInfos().then((res) => {
+      return res.body;
     }).catch(e => {
       throw e;
     });

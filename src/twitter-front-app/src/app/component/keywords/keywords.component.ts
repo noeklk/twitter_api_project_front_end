@@ -22,27 +22,19 @@ export class KeywordsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  GetAllKeywordsByIdUser() {
-    this.keywordService.GetAllKeywordsByUserId()
+  async GetAllKeywordsByKeyword(keyword) {
+    const keywords = await this.keywordService.GetAllKeywordsByKeyword(keyword)
       .then(res => {
-        this.keywords = res.body;
+        return res.body;
       }).catch(e => {
         throw e;
       });
+
+    this.keywords = keywords;
+    this.SetLabelsAndSeriesFromKeywords(keywords);
   }
 
-  GetKeywordsByIdUserAndKeyword(keyword) {
-    this.keywordService.GetKeywordByIdUserAndKeyword(keyword)
-      .then(res => {
-        this.specificKeywords = res.body;
-        console.log(res.body);
-        this.setLabelsAndSeriesFromKeywords(res.body);
-      }).catch(e => {
-        throw e;
-      });
-  }
-
-  setLabelsAndSeriesFromKeywords(keywords: KeywordModel[]) {
+  SetLabelsAndSeriesFromKeywords(keywords: KeywordModel[]) {
     for (const keyword of keywords) {
       this.labels.push(new Date(keyword.created_at).toTimeString().split(' ')[0]);
       this.series.push(keyword.tweets_number);
