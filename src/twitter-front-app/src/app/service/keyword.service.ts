@@ -10,20 +10,13 @@ import { KeywordModel } from '../model/keyword';
 })
 export class KeywordService {
 
-  private _getAllKeywordsByUserIdUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.keyword.get_all_keywords_by_id_user}`;
-  private _getKeywordsByUserIdAndKeywordUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.keyword.get_keywords_by_id_user_and_keyword}`;
+  private _getAllKeywordsKeywordUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.keyword.get_all_keywords_by_keyword}`;
 
-  constructor(private http: HttpClient, private sessionService: SessionService, private authService: AuthService) { }
+  constructor(private http: HttpClient) { }
 
-  GetAllKeywordsByUserId(): Promise<HttpResponse<KeywordModel[]>> {
-    const res = this.http.get<KeywordModel[]>(`${this._getAllKeywordsByUserIdUrl}/${this.authService.GetUserId()}/keywords`,
-      { observe: 'response' }).toPromise();
-    return res;
-  }
+  GetAllKeywordsByKeyword(keyword: string): Promise<HttpResponse<KeywordModel[]>> {
+    const res = this.http.get<KeywordModel[]>(`${this._getAllKeywordsKeywordUrl}/${keyword}`, { observe: 'response' }).toPromise();
 
-  GetKeywordByIdUserAndKeyword(keyword: string): Promise<HttpResponse<KeywordModel[]>> {
-    const res = this.http.get<KeywordModel[]>(`${this._getKeywordsByUserIdAndKeywordUrl}/${this.authService.GetUserId()}/keywords/${keyword}`,
-      { observe: 'response' }).toPromise();
     return res;
   }
 }
