@@ -1,3 +1,4 @@
+import { TwitterService } from 'src/app/service/twitter.service';
 import { Component, OnInit } from '@angular/core';
 import { KeywordModel } from 'src/app/model/keyword';
 import { KeywordService } from 'src/app/service/keyword.service';
@@ -13,13 +14,21 @@ export class KeywordsComponent implements OnInit {
   labels = [];
   series = [];
   specificKeywords = new Array<KeywordModel>();
+  franceTrend: string[];
   inputKeyword = 'covid19';
 
   constructor(
-    private keywordService: KeywordService
+    private keywordService: KeywordService,
+    private twitterService: TwitterService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+
+    this.franceTrend = await this.GetFranceTrend().then(res => {
+      return res;
+    }).catch(e => {
+      throw e;
+    });
   }
 
   async GetAllKeywordsByKeyword(keyword) {
@@ -32,6 +41,24 @@ export class KeywordsComponent implements OnInit {
 
     this.keywords = keywords;
     this.SetLabelsAndSeriesFromKeywords(keywords);
+  }
+
+  async GetFranceTrend() {
+    const trend = await this.twitterService.GetFranceTrend()
+      .then(res => {
+        return res.body[0].trends;
+      }).then(res => {
+        const trendName = new Array<string>();
+        res.forEach(element => {
+          trendName.push(element.name);
+        });
+        return trendName;
+      })
+      .catch(e => {
+        throw e;
+      });
+
+    return trend;
   }
 
   SetLabelsAndSeriesFromKeywords(keywords: KeywordModel[]) {

@@ -15,7 +15,10 @@ export class KeywordService {
   constructor(private http: HttpClient) { }
 
   GetAllKeywordsByKeyword(keyword: string): Promise<HttpResponse<KeywordModel[]>> {
-    const res = this.http.get<KeywordModel[]>(`${this._getAllKeywordsKeywordUrl}/${keyword}`, { observe: 'response' }).toPromise();
+    const encodedKeyword = encodeURIComponent(keyword);
+    const url = `${this._getAllKeywordsKeywordUrl}/${encodedKeyword}`;
+
+    const res = this.http.get<KeywordModel[]>(url, { observe: 'response' }).toPromise();
 
     return res;
   }

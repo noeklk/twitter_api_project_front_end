@@ -27,7 +27,8 @@ export const environment = {
       get_trend_by_woeid: 'twitter/trends/',
       get_woeids: 'twitter/woeids',
       invalidate_token: 'twitter/invalidate_token',
-      status_update: 'twitter/update_status'
+      status_update: 'twitter/update_status',
+      get_france_trend: 'twitter/trends/france'
     },
     keyword: {
       get_all_keywords_by_keyword: 'keywords'

@@ -40,4 +40,9 @@ export class TwitterService {
         return this.http.post(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.status_update}`, { status });
     }
 
+    GetFranceTrend(): Promise<HttpResponse<any>> {
+        const res = this.http.get<any>(`${environment.nodejs_api_host}${environment.nodejs_api_route.twitter.get_france_trend}`,
+            { observe: 'response' }).toPromise();
+        return res;
+    }
 }
