@@ -1,5 +1,5 @@
 import { TwitterService } from 'src/app/service/twitter.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { KeywordService } from 'src/app/service/keyword.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FilteredKeywordModel } from 'src/app/model/filtered-keyword';
@@ -20,6 +20,7 @@ export class KeywordsComponent implements OnInit {
   currentKeyword: string;
   currentFilter = 'default';
   filterForm: FormGroup;
+  disabledFilter = true;
 
   constructor(
     private keywordService: KeywordService,
@@ -40,6 +41,7 @@ export class KeywordsComponent implements OnInit {
   }
 
   async GetAllKeywordsByKeyword(keyword) {
+    this.disabledFilter = false;
     this.currentKeyword = keyword;
     this.currentFilter = 'default';
     this.filterForm.reset({ filters: 'default' });

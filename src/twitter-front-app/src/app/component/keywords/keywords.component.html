@@ -8,7 +8,7 @@
     &nbsp;&nbsp;
     <mat-form-field [formGroup]="filterForm">
         <mat-label>Filter by</mat-label>
-        <mat-select formControlName="filters">
+        <mat-select formControlName="filters" [disabled]="disabledFilter">
             <mat-option *ngFor="let filter of filters" [value]="filter" (click)="GetAllKeywordsByKeywordWithFilter(filter)">{{filter}}</mat-option>
         </mat-select>
     </mat-form-field>
