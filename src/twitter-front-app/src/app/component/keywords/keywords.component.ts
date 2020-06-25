@@ -1,5 +1,5 @@
 import { TwitterService } from 'src/app/service/twitter.service';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { KeywordService } from 'src/app/service/keyword.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FilteredKeywordModel } from 'src/app/model/filtered-keyword';
