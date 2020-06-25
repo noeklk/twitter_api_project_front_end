@@ -47,17 +47,17 @@ export class BarChartComponent implements OnInit {
         delays = 80;
         durations = 500;
 
-        if(data.type === 'line' || data.type === 'area') {
+        if (data.type === 'line' || data.type === 'area') {
           data.element.animate({
             d: {
               begin: 300,
               dur: 400,
               from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
               to: data.path.clone().stringify(),
-              easing: "easeOutQuad"
+              easing: 'easeOutQuad'
             }
           });
-        } else if(data.type === 'point') {
+        } else if (data.type === 'point') {
               seq++;
               data.element.animate({
                 opacity: {
