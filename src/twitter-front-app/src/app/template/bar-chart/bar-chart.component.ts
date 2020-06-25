@@ -25,7 +25,7 @@ export class BarChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.type = 'Bar';
+    this.type = 'Line';
 
     this.data = {
       labels: this.labels,
@@ -36,21 +36,40 @@ export class BarChartComponent implements OnInit {
       axisX: {
         showGrid: false
       },
-      height: 300
+      height: 300,
+      showArea: true,
     };
 
     this.events = {
       draw: (data) => {
-        if (data.type === 'bar') {
+        let seq: any, delays: any, durations: any;
+        seq = 0;
+        delays = 80;
+        durations = 500;
+
+        if (data.type === 'line' || data.type === 'area') {
           data.element.animate({
-            y2: {
-              dur: '0.5s',
-              from: data.y1,
-              to: data.y2,
+            d: {
+              begin: 300,
+              dur: 400,
+              from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+              to: data.path.clone().stringify(),
               easing: 'easeOutQuad'
-            } as IChartistAnimationOptions
+            }
           });
-        }
+        } else if (data.type === 'point') {
+              seq++;
+              data.element.animate({
+                opacity: {
+                  begin: seq * delays,
+                  dur: durations,
+                  from: 0,
+                  to: 1,
+                  easing: 'ease'
+                }
+              });
+          }
+
       }
     };
   }

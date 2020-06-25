@@ -5,9 +5,16 @@
             <mat-option *ngFor="let trend of franceTrend" [value]="trend" (click)="GetAllKeywordsByKeyword(trend)">{{trend}}</mat-option>
         </mat-select>
     </mat-form-field>
-
-    <div style="width: 700px;margin: auto;background-color: rgba(255, 255, 255, 0.6);"
+    &nbsp;&nbsp;
+    <mat-form-field [formGroup]="filterForm">
+        <mat-label>Filter by</mat-label>
+        <mat-select formControlName="filters" [disabled]="disabledFilter">
+            <mat-option *ngFor="let filter of filters" [value]="filter" (click)="GetAllKeywordsByKeywordWithFilter(filter)">{{filter}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="chart-container"
         *ngIf="labels.length > 0 && series.length > 0">
+        <h1>Statistiques du keyword : <span style="color: blue;">{{ currentKeyword}}</span></h1>
         <app-bar-chart [labels]="labels" [series]="series"></app-bar-chart>
     </div>
 </div>

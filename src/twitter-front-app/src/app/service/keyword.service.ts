@@ -4,6 +4,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { SessionService } from './session.service';
 import { AuthService } from './auth.service';
 import { KeywordModel } from '../model/keyword';
+import { FilteredKeywordModel } from '../model/filtered-keyword';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,12 @@ export class KeywordService {
 
   constructor(private http: HttpClient) { }
 
-  GetAllKeywordsByKeyword(keyword: string): Promise<HttpResponse<KeywordModel[]>> {
+  GetAllKeywordsByKeyword(keyword: string, filter?: string): Promise<HttpResponse<FilteredKeywordModel[]>> {
     const encodedKeyword = encodeURIComponent(keyword);
-    const url = `${this._getAllKeywordsKeywordUrl}/${encodedKeyword}`;
+    let url = `${this._getAllKeywordsKeywordUrl}/${encodedKeyword}`;
+    url = filter ? url + `?filter=${filter}` : url;
 
-    const res = this.http.get<KeywordModel[]>(url, { observe: 'response' }).toPromise();
+    const res = this.http.get<FilteredKeywordModel[]>(url, { observe: 'response' }).toPromise();
 
     return res;
   }
