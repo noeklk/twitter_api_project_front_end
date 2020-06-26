@@ -1,27 +1,52 @@
-# TwitterFrontApp
+#  Project Tweet analytics
+## *A web analytics keyword dashboard*
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+### Back-End : 
+[twitter_api_project_back_end](hhttps://github.com/noeklk/twitter_api_project_back_end)
 
-## Development server
+### Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This application allows :
 
-## Code scaffolding
+- Users can signup and login in the application
+- Users can login in the application with his Twitter account
+- Users can see the tweets trends from each countries
+- Datavizualisation of the setup keyword to display the differences with time.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+### Instructions
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+1.  You can either clone the project or download the latest release here :  [twitter_api_project_front_end](https://github.com/noeklk/twitter_api_project_front_end.git)
+2.  Install docker & docker-compose
+3.  Position yourself at the root of the project  `cd twitter_api_project_front_end`
 
-## Running unit tests
+### Languages used :
+* Javascript (Angular)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Base URL to application : 
+`http://127.0.0.1:4200/`
+or
+`http://localhost:4200/`
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Here is a few requirements to use the application with the api referenced up there
 
-## Further help
+-   You must run both the api and application on the same environment
+    -   Both must be running independently with  `docker-compose up`
+    -   Navigate to  `localhost:4200`  OR  `127.0.0.1:4200`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Credits & Licence
+29/05/2020 - GPL3 Licence (Open Source)
+
+
+**Noé ABDEL KALEK**  - *Front-End & Back-End Developer (Project Manager)*
+
+
+**Jéremie VANG FOUA**  - *Front-End & Back-End Developer*
+
+
+**Zayd SELMANI**  - *Front-End & Back-End Developer*  
+
+
+**Ouijdane EL IDRISSI RIOUI** - *Front-End & Back-End Developer*
+
