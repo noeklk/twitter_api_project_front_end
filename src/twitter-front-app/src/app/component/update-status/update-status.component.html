@@ -1,0 +1,20 @@
+<div class="update-container mat-elevation-z8">
+    <div class="header">
+        <span>
+            Statut
+        </span>
+        <mat-icon class="twitter-logo"></mat-icon>
+    </div>
+    <form class="content" [formGroup]="statusForm" (ngSubmit)="updateStatus()">
+        <mat-form-field class="text-area">
+            <mat-label>Poster vorte statut</mat-label>
+            <textarea formControlName="status" rows="8" matInput placeholder="Des nouvelles ?"></textarea>
+        </mat-form-field>
+        <div class="footer">
+            <mat-spinner *ngIf="loading; else tweet" class="spinner"  [diameter]="45"></mat-spinner>
+            <ng-template #tweet>
+                <button mat-raised-button color="primary" [disabled]="!statusForm.valid">Tweet</button>      
+            </ng-template>
+        </div>
+    </form>
+</div>

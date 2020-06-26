@@ -1,0 +1,40 @@
+.form-container {
+    width: 30%;
+    flex-direction: column;
+    display: flex;
+    margin: 50px auto;
+    background: hsl(0, 0%, 97%);
+    padding: 50px;
+    position: relative;
+    min-height: 240px;
+    max-height: 250px;
+
+    .spinner {
+        position: absolute;
+        left: 70%;
+        bottom: 56.5px;
+    }
+
+    .signup-a {
+        margin-top: 8px;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        text-decoration: none;
+        font-weight: 700;
+    }
+
+    .container-login {
+        justify-content: space-between;
+        display: flex;
+    }
+
+    .error-handler {
+        text-align: center;
+    }
+
+    .validation-button {
+        width:153px;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        text-decoration: none;
+        font-weight: 700;
+    }
+}

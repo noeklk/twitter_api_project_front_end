@@ -1,0 +1,48 @@
+<form class="form-container mat-elevation-z4" [formGroup]="loginForm" (ngSubmit)="Login()">
+    <h1>Connexion</h1>
+
+    <!-- Input pour l'identifiant -->
+    <mat-form-field appearance="standard">
+        <mat-label>Identifiant</mat-label>
+        <input type="text" formControlName="pseudo" matInput placeholder="" required>
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-error>veuillez saisir un identifiant valide</mat-error>
+    </mat-form-field>
+
+    <!-- Input pour le mot de passe -->
+    <mat-form-field appearance="standard">
+        <mat-label>Mot de passe</mat-label>
+        <input type="password" formControlName="password" matInput placeholder="" required>
+        <mat-icon matSuffix>vpn_key</mat-icon>
+        <mat-error>veuillez saisir un mot de passe valide</mat-error>
+    </mat-form-field>
+
+    <!-- bouton pour le submit -->
+    <div class="container-login">
+
+        <!-- Redirection signup -->
+        <a class="signup-a" routerLink="/signup">Je n'ai pas de compte</a>
+        
+        <button *ngIf="!submitted"
+        class="validation-button" 
+        mat-raised-button color="primary" 
+        [disabled]="!loginForm.valid"
+        >
+        Se connecter
+        </button>
+    </div>
+    
+    <br />
+
+    <!-- Affichage d'erreur -->
+    <div class="error-handler" *ngIf="errorMessage">
+        
+        <mat-icon color="warn">warning</mat-icon><mat-error>{{ errorMessage }} !</mat-error>
+    </div>
+
+    
+
+    <!-- Spinner -->
+    <mat-spinner class="spinner" *ngIf="submitted" [diameter]="55"></mat-spinner>
+    
+</form>

@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+    <div class="header-wrapper">
+        <div class="left">
+            <div class="logo_title" routerLink="/home">
+                <mat-icon class="logo"></mat-icon>
+                <h1>TwitterLytics</h1>
+            </div>
+            <div class="links">
+                <ng-container *ngIf="authService.isTwitterAuthenticated">
+                    <button mat-raised-button routerLink='/home/keyword'
+                        routerLinkActive="underline-active">Mots-clés</button>
+                    <button mat-raised-button routerLink='/home/twitter-trends'
+                        routerLinkActive="underline-active">Tendances</button>
+                    <button mat-raised-button routerLink='/home/update-status'
+                        routerLinkActive="underline-active">Poster</button>
+                </ng-container>
+            </div>
+        </div>
+        <div class="right">
+            <ng-container *ngIf="!authService.isLoggedIn">
+                <a routerLink="/login" routerLinkActive="underline-active">Connexion</a>
+                <a routerLink="/signup" routerLinkActive="underline-active">Inscription</a>
+            </ng-container>
+            <a class="right" style="cursor: pointer;" (click)="authService.Logout()" *ngIf="authService.isLoggedIn">
+                <mat-icon class="disconnect-icon"></mat-icon>
+                Déconnexion
+            </a>
+        </div>
+
+    </div>
+</mat-toolbar>

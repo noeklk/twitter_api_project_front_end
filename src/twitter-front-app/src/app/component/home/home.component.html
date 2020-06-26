@@ -1,0 +1,10 @@
+<div class="buttons-container">
+  <button mat-raised-button (click)="RedirectToTwitter()">{{tweeterConnectStatus}}
+    <mat-icon class="twitter-logo"></mat-icon>
+  </button>
+</div>
+
+<div class="content" *ngIf="authService.isTwitterAuthenticated">
+  <router-outlet></router-outlet>
+</div>  
+<!-- <router-outlet name="secondary"></router-outlet>  -->
